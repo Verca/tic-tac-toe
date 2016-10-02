@@ -7,9 +7,10 @@ To install, please execute this command:
 `npm install`
 
 ## Run
-To run this application, install it and then run with this command:
+To run this application, install it and then run these commands (in separate terminal windows):
 
-`npm run webpack`
+`npm run build`
+`webpack-dev-server`
 
 Application runs on `localhost:8080`
 
