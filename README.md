@@ -10,6 +10,7 @@ To install, please execute this command:
 To run this application, install it and then run these commands (in separate terminal windows):
 
 `npm run build`
+
 `webpack-dev-server`
 
 Application runs on `localhost:8080`
