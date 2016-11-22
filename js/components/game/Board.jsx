@@ -37,18 +37,17 @@ class Board extends React.Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
-  renderCells(row, rowIndex) {
-    return row.map((mark, colIndex) =>
-      <td key={colIndex} onClick={this.onMarkPlaced.bind(this, rowIndex, colIndex, mark)}></td>);
-  }
-
   resetBoard() {
     if(document.getElementsByTagName('td')) {
       _.forEach(document.getElementsByTagName('td'), (element) => {
         element.style['background-image'] = '';
       });
-      //
     }
+  }
+
+  renderCells(row, rowIndex) {
+    return row.map((mark, colIndex) =>
+      <td key={colIndex} onClick={this.onMarkPlaced.bind(this, rowIndex, colIndex, mark)}></td>);
   }
 
   renderRows() {
