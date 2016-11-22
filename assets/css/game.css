@@ -42,7 +42,7 @@ button {
   padding: 7px;
 }
 
-#table-container {
+#table_container {
   display: flex;
   justify-content: center;
 }

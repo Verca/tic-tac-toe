@@ -71,7 +71,7 @@ class Board extends React.Component {
       <div>
         <h1>{GAME_NAME}</h1>
         <h2>{NEXT_PLAYER_MSG + nextToPlay}</h2>
-        <div id="table-container">
+        <div id="table_container">
           <table>
             <tbody>
               {this.renderRows()}
