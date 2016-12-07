@@ -2,8 +2,8 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 
-import { resetGame } from '../../actions/actions';
-import { EMPTY } from '../../constants/marks';
+import { resetGame } from '../../../actions/actions';
+import { EMPTY } from '../../../constants/marks';
 
 const TIE_MSG= 'It\'s a tie!';
 const WINNER_MSG = 'Winner is: ';

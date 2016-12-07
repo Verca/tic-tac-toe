@@ -2,11 +2,11 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import initialState from '../../initialState';
+import initialState from '../../../initialState';
 import _ from 'lodash';
 
-import { placeMark } from '../../actions/actions';
-import * as Marks from '../../constants/marks';
+import { placeMark } from '../../../actions/actions';
+import * as Marks from '../../../constants/marks';
 
 const NEXT_PLAYER_MSG = 'Next turn: Player ';
 const GAME_NAME = 'Tic tac toe';

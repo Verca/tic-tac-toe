@@ -1,32 +1,30 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
-import Menu from './Menu';
+class Menu extends React.Component {
 
-class Application extends React.Component {
-  static propTypes = {
-    winner: React.PropTypes.string.isRequired,
+  constructor(props) {
+    super(props);
   }
-  
+
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
   render() {
-    const { winner } = this.props;
-
     return (
       <div>
-        <Menu/>
-        {this.props.children}
+        <ul>
+          <li><Link to="/tic-tac-board">TicTacToe</Link></li>
+          <li>Chart</li>
+        </ul>
       </div>);
   }
 }
 
 export default connect(
   state => ({
-    board: state.get('board'),
-    nextToPlay: state.get('nextToPlay'),
     winner: state.get('winner')
-  }))(Application);
+  }))(Menu);
