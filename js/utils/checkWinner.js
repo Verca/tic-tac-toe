@@ -1,4 +1,4 @@
-import { EMPTY } from '../constants/marks';
+import { EMPTY } from '../components/ticTacToe/constants/marks';
 
 const checkWinner = (board) => {
   const boardSize = board.length;

@@ -1,5 +1,5 @@
 import initialState from '../initialState';
-import {X, O} from '../constants/marks';
+import {X, O} from '../components/ticTacToe/constants/marks';
 
 export function placeMark(state, action) {
   const rowIndex = action.payload.rowIndex;

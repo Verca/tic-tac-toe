@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { NO_WINNER, EMPTY, X } from './constants/marks';
+import { NO_WINNER, EMPTY, X } from './components/ticTacToe/constants/marks';
 
 const BOARD_SIZE = 3;
 

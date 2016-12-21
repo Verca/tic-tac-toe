@@ -1,4 +1,4 @@
-import build from './build';
+import build from '../../../utils/buildAction';
 import * as Actions from '../constants/actions';
 
 export const placeMark = (rowIndex, colIndex) => {

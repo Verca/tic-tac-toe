@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import initialState from '../initialState';
 import { placeMark, switchPlayers } from './gameReducer';
-import { X, O } from '../constants/marks';
+import { X, O } from '../components/ticTacToe/constants/marks';
 
 describe('placeMark reduction', () => {
     let state;

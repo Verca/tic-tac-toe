@@ -3,26 +3,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'rxjs';
 import { Router, Route, browserHistory } from 'react-router';
-	
 import store from './store';
-import Application from './components/Application';
-import Board from './components/ticTacToe/components/Board';
-import Menu from './components/Menu';
 
+// load style sheets
 import '../node_modules/normalize.css/normalize.css';
 import '../assets/css/game.css';
 
-import routeIndex from './components/ticTacToe/routeIndex';
-
-const rootRoute = {
-  childRoutes: [ {
-    path: '/',
-    component: Application,
-    childRoutes: [
-      routeIndex,
-    ]
-  } ]
-};
+// load root route index
+import rootRoute from './components/application/index';
 
 ReactDOM.render((
   <Provider store={store}>
