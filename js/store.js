@@ -2,8 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import _ from 'lodash';
 
-import { epicsRoot } from './appRegister';
-import rootReducer from './reducers/index';
+import { epicsRoot, reducersRoot } from './appRegister';
 import initialState from './initialState';
 
 const epicMiddleware = createEpicMiddleware(combineEpics(
@@ -12,7 +11,7 @@ const epicMiddleware = createEpicMiddleware(combineEpics(
   ))
 ));
 
- const store = createStore(rootReducer, initialState,
- 	applyMiddleware(epicMiddleware));
+const store = createStore(...reducersRoot, initialState,
+  applyMiddleware(epicMiddleware));
  
 export default store;

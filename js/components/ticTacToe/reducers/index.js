@@ -1,5 +1,5 @@
 import * as gameReducer from './gameReducer';
-import * as Actions from '../components/ticTacToe/constants/actions';
+import * as Actions from '../constants/actions';
 
 export default (state, action) => {
 	switch(action.type) {

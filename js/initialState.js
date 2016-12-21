@@ -1,7 +1,6 @@
 import Immutable from 'immutable';
-import { NO_WINNER, EMPTY, X } from './components/ticTacToe/constants/marks';
-
-const BOARD_SIZE = 3;
+import { NO_WINNER, X } from './components/ticTacToe/constants/marks';
+import { getInitBoard } from './components/ticTacToe/utils/boardUtils';
 
 export default Immutable.fromJS({
   nextToPlay: X,
@@ -10,13 +9,4 @@ export default Immutable.fromJS({
   winner: NO_WINNER
 });
 
-function getInitBoard() {
-  const board = [];
-  for(let row = 0; row < BOARD_SIZE; row++) {
-    board[row] = [];
-    for(let col = 0; col < BOARD_SIZE; col++) {
-      board[row][col] = EMPTY;
-    }
-  }
-  return board;
-};
+

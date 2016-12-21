@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { switchPlayers, displayEndScore } from '../actions/actions';
-import checkWinner from '../../../utils/checkWinner';
+import checkWinner from '../utils/checkWinner';
 import { PLACE_MARK } from '../constants/actions';
 import { EMPTY } from '../constants/marks';
 
