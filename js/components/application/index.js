@@ -8,7 +8,7 @@ export default {
     path: '/',
     component: Application,
     childRoutes: [
-      // routeIndex,
+      routeIndex,
     ]
   } ]
 };

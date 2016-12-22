@@ -2,7 +2,7 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import initialState from '../../../initialState';
+import initialState from '../moduleState';
 import _ from 'lodash';
 
 import { placeMark } from '../actions/actions';
@@ -84,6 +84,6 @@ class Board extends React.Component {
 
 export default connect(
   state => ({
-    board: state.get('board'),
-    nextToPlay: state.get('nextToPlay')
+    board: state.ticTacReducer.get('board'),
+    nextToPlay: state.ticTacReducer.get('nextToPlay')
   }))(Board);

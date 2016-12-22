@@ -9,6 +9,10 @@ export const displayEndScore = (winner) => {
 	return build(Actions.DISPLAY_END_SCORE, winner);
 };
 
+export const setWinner = (winner) => {
+	return build(Actions.SET_WINNER, winner);
+};
+
 export const switchPlayers = () => {
 	return build(Actions.SWITCH_PLAYERS);
 };

@@ -43,5 +43,5 @@ class Board extends React.Component {
 
 export default connect(
   state => ({
-    winner: state.get('winner')
+    winner: state.ticTacReducer.get('winner')
   }))(Board);

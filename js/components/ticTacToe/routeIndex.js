@@ -22,15 +22,7 @@ const arrayOfChildrenRotes = [
 export default {
   path: mainRoute,
   // async load of children routes
-  getChildRoutes(partialNextState, cb) {
-    require.ensure([], (require) => {
-      cb(null, arrayOfChildrenRotes)
-    })
-  },
+  childRoutes: arrayOfChildrenRotes,
   // async load of the component (loads only when it's needed)
-  getComponent(nextState, cb) {
-    require.ensure([], (require) => {
-      cb(null, mainComponent)
-    })
-  }
+  component: Board
 };

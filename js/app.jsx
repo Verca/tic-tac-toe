@@ -13,7 +13,7 @@ import '../assets/css/game.css';
 // load root route index
 import rootRoute from './components/application/index';
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => state.routing//.get('routing').toJS()
+  selectLocationState: (state) => state.routing.toJS()
 });
 
 ReactDOM.render((

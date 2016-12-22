@@ -1,4 +1,4 @@
-import initialState from '../../../initialState';
+import moduleState from '../moduleState';
 import {X, O} from '../constants/marks';
 
 export function placeMark(state, action) {
@@ -15,11 +15,11 @@ export function switchPlayers(state) {
   return state.set('nextToPlay', activePlayer === O ? X : O);
 }
 
-export function displayEndScore(state, action) {
+export function setWinner(state, action) {
   const winner = action.payload;
   return state.set('winner', winner);
 }
 
 export function resetGame() {
-  return initialState;
+  return moduleState;
 }
