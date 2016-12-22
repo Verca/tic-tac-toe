@@ -1,8 +1,9 @@
 import * as gameReducer from './gameReducer';
 import * as Actions from '../constants/actions';
-
-export default (state, action) => {
+import initialState from '../../../initialState';
+export default (state = initialState, action) => {
 	console.info('action type ' + action.type + ', payload: ', action.payload);
+
 	switch(action.type) {
 		case Actions.PLACE_MARK:
 			return gameReducer.placeMark(state, action);

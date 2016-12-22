@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'rxjs';
 import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import store from './store';
 
 // load style sheets
@@ -11,9 +12,12 @@ import '../assets/css/game.css';
 
 // load root route index
 import rootRoute from './components/application/index';
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState: (state) => state.routing//.get('routing').toJS()
+});
 
 ReactDOM.render((
   <Provider store={store}>
-    <Router history={browserHistory} routes={rootRoute} />
+    <Router history={history} routes={rootRoute} />
   </Provider>
 ), document.getElementById('app'));

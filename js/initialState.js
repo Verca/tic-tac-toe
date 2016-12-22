@@ -6,7 +6,9 @@ export default Immutable.fromJS({
   nextToPlay: X,
   board: getInitBoard(),
   numberOfMoves: 0,
-  winner: NO_WINNER
+  winner: NO_WINNER,
+  routing: {},
+  locationBeforeTransitions: null
 });
 
 

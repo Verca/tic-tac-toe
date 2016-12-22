@@ -5,17 +5,13 @@ import { connect } from 'react-redux';
 import Menu from './Menu';
 
 class Application extends React.Component {
-  static propTypes = {
-    winner: React.PropTypes.string.isRequired,
-  }
   
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
   render() {
-    const { winner } = this.props;
-
+    console.info('render');
     return (
       <div>
         <Menu/>
@@ -26,7 +22,4 @@ class Application extends React.Component {
 
 export default connect(
   state => ({
-    board: state.get('board'),
-    nextToPlay: state.get('nextToPlay'),
-    winner: state.get('winner')
   }))(Application);
