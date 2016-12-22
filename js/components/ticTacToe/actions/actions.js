@@ -20,3 +20,8 @@ export const switchPlayers = () => {
 export const resetGame = () => {
 	return build(Actions.RESET_GAME);
 };
+
+
+export const resetBoard = () => {
+  return build(Actions.RESET_BOARD);
+}

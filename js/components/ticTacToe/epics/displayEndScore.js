@@ -6,5 +6,5 @@ import { push } from 'react-router-redux';
 export default (action$, store) => action$
   .ofType(DISPLAY_END_SCORE)
   .mergeMap(action => {
-    return Observable.of(setWinner(action.payload), push('tic-tac-toe/score'));
+    return Observable.of(setWinner(action.payload), push('tic-tac-board/score'));
   });

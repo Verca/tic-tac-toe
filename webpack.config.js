@@ -5,7 +5,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: ["babel-polyfill", './js/app.jsx'],
   output: {
-    path: './dist',
+    path: '/dist',
     filename: 'bundle.js',
   },
   plugins: [

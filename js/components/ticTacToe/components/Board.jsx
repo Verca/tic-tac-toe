@@ -10,8 +10,8 @@ import * as Marks from '../constants/marks';
 
 const NEXT_PLAYER_MSG = 'Next turn: Player ';
 const GAME_NAME = 'Tic tac toe';
-const X_IMG = '"./assets/img/xmark.png"';
-const O_IMG = '"./assets/img/omark.png"';
+const X_IMG = '"/assets/img/xmark.png"';
+const O_IMG = '"/assets/img/omark.png"';
 
 class Board extends React.Component {
   static propTypes = {

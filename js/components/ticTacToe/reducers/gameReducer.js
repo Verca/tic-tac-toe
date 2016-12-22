@@ -20,6 +20,6 @@ export function setWinner(state, action) {
   return state.set('winner', winner);
 }
 
-export function resetGame() {
+export function resetBoard() {
   return moduleState;
 }

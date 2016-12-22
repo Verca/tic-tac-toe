@@ -13,8 +13,8 @@ export default (state = 0, action) => {
 		case Actions.SET_WINNER:
 			return gameReducer.setWinner(state, action);
 
-		case Actions.RESET_GAME:
-			return gameReducer.resetGame(state, action);
+		case Actions.RESET_BOARD:
+			return gameReducer.resetBoard(state, action);
 
 		default:
 			return state;
