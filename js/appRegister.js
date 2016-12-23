@@ -8,11 +8,15 @@ import applicationReducer from './components/application/reducers/applicationRed
 import ticTacState from './components/ticTacToe/moduleState';
 import routingStateImmutable from './components/application/applicationState';
 
+import tictacModule from './components/ticTacToe/moduleRegister';
+
 // register your module's application state
-export const initialState = {
-  ticTacReducer: ticTacState,
+const initialStateDraft = {
   routing: routingStateImmutable,
 };
+
+initialStateDraft[tictacModule.moduleName] = tictacModule.initialState;
+export const initialState = initialStateDraft;
 
 // register your module's epic root
 export const epicsRoot = [
@@ -20,7 +24,10 @@ export const epicsRoot = [
 ];
 
 // register your module's reducer here
-export const reducersRoot = {
-  ticTacReducer,
+const reducersRootDraft = {
   routing: applicationReducer,
 };
+
+reducersRootDraft[tictacModule.moduleName] = tictacModule.reducerRoot;
+
+export const reducersRoot = reducersRootDraft;

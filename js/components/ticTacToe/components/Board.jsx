@@ -2,11 +2,12 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import initialState from '../moduleState';
+import moduleState from '../moduleState';
 import _ from 'lodash';
 
 import { placeMark } from '../actions/actions';
 import * as Marks from '../constants/marks';
+import moduleRegister from '../moduleRegister';
 
 const NEXT_PLAYER_MSG = 'Next turn: Player ';
 const GAME_NAME = 'Tic tac toe';
@@ -62,7 +63,7 @@ class Board extends React.Component {
   render() {
     const { nextToPlay } = this.props;
 
-    if(this.props.board == initialState.get('board')) {
+    if(this.props.board == moduleState.get('board')) {
       this.resetBoard();
     }
 
@@ -82,8 +83,9 @@ class Board extends React.Component {
   }
 }
 
-export default connect(
-  state => ({
-    board: state.ticTacReducer.get('board'),
-    nextToPlay: state.ticTacReducer.get('nextToPlay')
-  }))(Board);
+export default connect( state => (state => {
+  return {
+    board: state.get('board'),
+    nextToPlay: state.get('nextToPlay')
+  }
+})(state[moduleRegister.moduleName]))(Board);
