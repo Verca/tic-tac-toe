@@ -1,7 +1,7 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
-import moduleRegister from '../moduleRegister';
+import { moduleName } from '../moduleRegister';
 
 import { resetGame } from '../actions/actions';
 import { EMPTY } from '../constants/marks';
@@ -46,4 +46,4 @@ export default connect( state => (state => {
   return {
     winner: state.get('winner')
   }
-})(state[moduleRegister.moduleName]))(Board);
+})(state[moduleName]))(Board);

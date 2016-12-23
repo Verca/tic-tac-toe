@@ -11,7 +11,6 @@ class Application extends React.Component {
   }
 
   render() {
-    console.info('render');
     return (
       <div>
         <Menu/>

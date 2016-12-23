@@ -1,33 +1,31 @@
-import Immutable from 'immutable';
-// epics import
-import ticTacToe from './components/ticTacToe/epics/index';
-// reducers import
-import ticTacReducer from './components/ticTacToe/reducers/index';
-import applicationReducer from './components/application/reducers/applicationReducer';
+import _ from 'lodash';
+import MODULES from './modulesRegister';
 
-import ticTacState from './components/ticTacToe/moduleState';
-import routingStateImmutable from './components/application/applicationState';
+// validity check
+MODULES.forEach(module => {
+  if (!module.name) {
+    throw new Error('Every module must have a name registered in moduleRegister.js file. Please fix this module: ' + JSON.stringify(module, null, 4))
+  }
+  if (!module.state) {
+    throw new Error('Every module must have a state registered in moduleRegister.js file. Please fix this module: ' + JSON.stringify(module, null, 4))
+  }
+  if (!module.reducers) {
+    throw new Error('Every module must have reducers registered in moduleRegister.js file. Please fix this module: ' + JSON.stringify(module, null, 4))
+  }
+});
 
-import tictacModule from './components/ticTacToe/moduleRegister';
+export const initialState = _.reduce(MODULES, (state, module) => {
+  state[module.name] = module.state;
+  return state;
+}, {});
 
-// register your module's application state
-const initialStateDraft = {
-  routing: routingStateImmutable,
-};
+export const epicsRoot = _.reduce(MODULES, (epics, module) => {
+  if (!module.epics || !module.epics.length === 0) return epics;
+  epics.push(module.epics);
+  return epics;
+}, []);
 
-initialStateDraft[tictacModule.moduleName] = tictacModule.initialState;
-export const initialState = initialStateDraft;
-
-// register your module's epic root
-export const epicsRoot = [
-  ticTacToe,
-];
-
-// register your module's reducer here
-const reducersRootDraft = {
-  routing: applicationReducer,
-};
-
-reducersRootDraft[tictacModule.moduleName] = tictacModule.reducerRoot;
-
-export const reducersRoot = reducersRootDraft;
+export const reducersRoot = _.reduce(MODULES, (reducers, module) => {
+  reducers[module.name] = module.reducers;
+  return reducers;
+}, {});

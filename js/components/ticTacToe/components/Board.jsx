@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 import { placeMark } from '../actions/actions';
 import * as Marks from '../constants/marks';
-import moduleRegister from '../moduleRegister';
+import { moduleName } from '../moduleRegister';
 
 const NEXT_PLAYER_MSG = 'Next turn: Player ';
 const GAME_NAME = 'Tic tac toe';
@@ -88,4 +88,4 @@ export default connect( state => (state => {
     board: state.get('board'),
     nextToPlay: state.get('nextToPlay')
   }
-})(state[moduleRegister.moduleName]))(Board);
+})(state[moduleName]))(Board);
