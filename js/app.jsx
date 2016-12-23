@@ -5,14 +5,14 @@ import 'rxjs';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import store from './store';
-import { moduleName } from './components/application/moduleRegister';
+import { moduleName } from './modules/application/moduleRegister';
 
 // load style sheets
 import '../node_modules/normalize.css/normalize.css';
 import '../assets/css/game.css';
 
 // load root route index
-import rootRoute from './components/application/index';
+import rootRoute from './modules/application/index';
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: (state) => state[moduleName].toJS()
 });

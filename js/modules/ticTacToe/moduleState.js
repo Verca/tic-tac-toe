@@ -8,5 +8,3 @@ export default Immutable.fromJS({
   numberOfMoves: 0,
   winner: NO_WINNER,
 });
-
-

@@ -1,5 +1,5 @@
-import tictacModule from './components/ticTacToe/moduleRegister';
-import applicationModule from './components/application/moduleRegister';
+import tictacModule from './modules/ticTacToe/moduleRegister';
+import applicationModule from './modules/application/moduleRegister';
 
 // register your module here
 export default [

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import MODULES from './modulesRegister';
+import MODULES from '../modulesRegister';
 
 // validity check
 MODULES.forEach(module => {
