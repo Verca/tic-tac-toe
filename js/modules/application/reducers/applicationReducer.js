@@ -1,7 +1,7 @@
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 export default (state = 0, action) => {
-  console.info('ACTION ' + action.type + ' payload:', action.type);
+  console.info('ACTION ' + action.type + ' payload:', action);
 
   switch(action.type) {
     case LOCATION_CHANGE:

@@ -3,8 +3,8 @@ import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 import { moduleName } from '../moduleRegister';
 
-import { resetGame } from '../actions/actions';
 import { EMPTY } from '../constants/marks';
+import Actions from '../actions/actionsTest';
 
 const TIE_MSG= 'It\'s a tie!';
 const WINNER_MSG = 'Winner is: ';
@@ -19,7 +19,7 @@ class Board extends React.Component {
     super(props);
 
     this.onResetClicked = () => {
-      this.props.dispatch(resetGame());
+      this.props.dispatch(Actions.resetGame());
     };
   }
 

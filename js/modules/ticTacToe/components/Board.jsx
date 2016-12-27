@@ -5,14 +5,15 @@ import Immutable from 'immutable';
 import moduleState from '../moduleState';
 import _ from 'lodash';
 
-import { placeMark } from '../actions/actions';
 import * as Marks from '../constants/marks';
 import { moduleName } from '../moduleRegister';
+import Actions from '../actions/actionsTest';
 
 const NEXT_PLAYER_MSG = 'Next turn: Player ';
 const GAME_NAME = 'Tic tac toe';
 const X_IMG = '"/assets/img/xmark.png"';
 const O_IMG = '"/assets/img/omark.png"';
+
 
 class Board extends React.Component {
   static propTypes = {
@@ -30,7 +31,7 @@ class Board extends React.Component {
       }
       const mark_img = this.props.nextToPlay === Marks.X ? X_IMG : O_IMG;
       ev.target.style['background-image'] = `url(${mark_img})`;
-      this.props.dispatch(placeMark(rowIndex, colIndex));
+      this.props.dispatch(Actions.placeMark({rowIndex, colIndex}));
     };
   }
 

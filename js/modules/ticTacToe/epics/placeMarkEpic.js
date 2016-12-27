@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { switchPlayers, displayEndScore } from '../actions/actions';
+import Actions from '../actions/actionsTest';
 import checkWinner from '../utils/checkWinner';
-import { PLACE_MARK } from '../constants/actions';
+import { PLACE_MARK } from '../actions/actionsTest';
 import { EMPTY } from '../constants/marks';
 import { moduleName } from '../moduleRegister';
 
@@ -14,8 +14,8 @@ export default (action$, store) => action$
     const numberOfMoves = state.get('numberOfMoves');
     const boardSize = state.get('board').size;
     if (numberOfMoves < (boardSize*3) && winner == EMPTY) {
-      return switchPlayers();
+      return Actions.switchPlayers();
     } else {
-      return displayEndScore(winner);
+      return Actions.displayEndScore(winner);
     }
   });

@@ -1,11 +1,10 @@
 import * as gameReducer from './gameReducer';
-import * as Actions from '../constants/actions';
-export default (state = 0, action) => {
-	// console.info('action type ' + action.type + ', payload: ', action.payload);
+import * as Actions from '../actions/actionsTest';
 
+export default (state = 0, action) => {
 	switch(action.type) {
 		case Actions.PLACE_MARK:
-			return gameReducer.placeMark(state, action);
+      return gameReducer.placeMark(state, action);
 
 		case Actions.SWITCH_PLAYERS:
 			return gameReducer.switchPlayers(state, action);
@@ -15,8 +14,6 @@ export default (state = 0, action) => {
 
 		case Actions.RESET_BOARD:
 			return gameReducer.resetBoard(state, action);
-
-		default:
-			return state;
 	}
+  return state;
 };
