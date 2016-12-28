@@ -2,9 +2,9 @@ import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import moduleState from '../moduleState';
 import _ from 'lodash';
 
+import moduleState from '../moduleState';
 import * as Marks from '../constants/marks';
 import Actions from '../actions/actionsTest';
 import moduleName from '../moduleName';
@@ -20,6 +20,7 @@ class Board extends React.Component {
     dispatch: React.PropTypes.func,
     board: React.PropTypes.instanceOf(Immutable.List).isRequired,
     nextToPlay: React.PropTypes.string.isRequired,
+    children: React.PropTypes.any,
   }
 
   constructor(props) {

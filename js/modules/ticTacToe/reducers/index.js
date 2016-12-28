@@ -10,7 +10,7 @@ const reducerMapping = {
 };
 
 export default (state = 0, action) => {
-  if(reducerMapping[action.type] && action.moduleName === moduleName) {
+  if (reducerMapping[action.type] && action.moduleName === moduleName) {
     return reducerMapping[action.type](state, action);
   }
   return state;

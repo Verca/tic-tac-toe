@@ -4,10 +4,10 @@ export default (act, moduleName) => _.reduce(act, (mapa, action, key) => {
   mapa[action] = (payload) => {
     return {
       type: action,
-      payload: payload,
+      payload,
       action: key,
-      moduleName: moduleName
-    }
+      moduleName,
+    };
   };
   return mapa;
 }, {});

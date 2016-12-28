@@ -4,13 +4,17 @@ import MODULES from '../modulesRegister';
 // validity check
 MODULES.forEach(module => {
   if (!module.name) {
-    throw new Error('Every module must have a name registered in moduleRegister.js file. Please fix this module: ' + JSON.stringify(module, null, 4))
+    throw new Error(
+      'Every module must have a name registered in moduleRegister.js file. Please fix this module: '
+      + `${JSON.stringify(module, null, 4)}`);
   }
   if (!module.state) {
-    throw new Error('Every module must have a state registered in moduleRegister.js file. Please fix this module: ' + JSON.stringify(module, null, 4))
+    throw new Error('Every module must have a state registered in moduleRegister.js file. '
+    + `Please fix this module: ${JSON.stringify(module, null, 4)}`);
   }
   if (!module.reducers) {
-    throw new Error('Every module must have reducers registered in moduleRegister.js file. Please fix this module: ' + JSON.stringify(module, null, 4))
+    throw new Error('Every module must have reducers registered in moduleRegister.js file. '
+    + `Please fix this module: ${JSON.stringify(module, null, 4)}`);
   }
 });
 

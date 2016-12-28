@@ -6,5 +6,5 @@ import resetGame from './resetGame';
 export default [
   placeMark,
   displayEndScore,
-  resetGame
+  resetGame,
 ];

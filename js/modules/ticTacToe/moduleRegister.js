@@ -1,3 +1,4 @@
+/* eslint object-shorthand: 0 */
 import reducers from './reducers/index';
 import moduleState from './moduleState';
 import epics from './epics/index';
@@ -9,5 +10,5 @@ export default {
   name: moduleName,
   reducers: reducers,
   epics: epics,
-  state: moduleState
+  state: moduleState,
 };

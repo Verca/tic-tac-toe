@@ -1,5 +1,5 @@
 import moduleState from '../moduleState';
-import {X, O} from '../constants/marks';
+import { X, O } from '../constants/marks';
 
 export function placeMark(state, action) {
   const rowIndex = action.payload.rowIndex;
@@ -7,7 +7,7 @@ export function placeMark(state, action) {
   const activePlayer = state.get('nextToPlay');
 
   return state.setIn(['board', rowIndex, colIndex], activePlayer)
-    .set('numberOfMoves', state.get('numberOfMoves') + 1 );
+    .set('numberOfMoves', state.get('numberOfMoves') + 1);
 }
 
 export function switchPlayers(state) {

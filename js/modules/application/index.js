@@ -4,11 +4,11 @@ import Application from './Application';
 import routeIndex from '../ticTacToe/routeIndex';
 
 export default {
-  childRoutes: [ {
+  childRoutes: [{
     path: '/',
     component: Application,
     childRoutes: [
       routeIndex,
-    ]
-  } ]
+    ],
+  }],
 };

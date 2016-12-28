@@ -1,9 +1,9 @@
+/* eslint no-unused-vars: 0 */
 import { Observable } from 'rxjs';
-import Actions from '../actions/actionsTest';
-import { RESET_GAME } from '../actions/actionsTest';
 import { push } from 'react-router-redux';
+import Actions, { RESET_GAME } from '../actions/actionsTest';
 
-export default (action$, store) => action$
+export default (action$) => action$
   .ofType(RESET_GAME)
   .mergeMap(action => {
     return Observable.of(Actions.resetBoard(), push('/tic-tac-board'));

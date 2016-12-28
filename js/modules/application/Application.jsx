@@ -5,7 +5,10 @@ import { connect } from 'react-redux';
 import Menu from './Menu';
 
 class Application extends React.Component {
-  
+  static propTypes = {
+    children: React.PropTypes.any
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
