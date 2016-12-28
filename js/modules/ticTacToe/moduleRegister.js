@@ -1,9 +1,7 @@
 import reducers from './reducers/index';
 import moduleState from './moduleState';
 import epics from './epics/index';
-
-// register name of the module
-export const moduleName = 'tictactoe';
+import moduleName from './moduleName';
 
 // module structure
 // don't modify this unless you know what you are doing

@@ -1,10 +1,10 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
-import { moduleName } from '../moduleRegister';
+import Actions from '../actions/actionsTest';
+import moduleName from '../moduleName';
 
 import { EMPTY } from '../constants/marks';
-import Actions from '../actions/actionsTest';
 
 const TIE_MSG= 'It\'s a tie!';
 const WINNER_MSG = 'Winner is: ';

@@ -6,8 +6,8 @@ import moduleState from '../moduleState';
 import _ from 'lodash';
 
 import * as Marks from '../constants/marks';
-import { moduleName } from '../moduleRegister';
 import Actions from '../actions/actionsTest';
+import moduleName from '../moduleName';
 
 const NEXT_PLAYER_MSG = 'Next turn: Player ';
 const GAME_NAME = 'Tic tac toe';

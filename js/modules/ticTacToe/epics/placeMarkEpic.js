@@ -3,7 +3,8 @@ import Actions from '../actions/actionsTest';
 import checkWinner from '../utils/checkWinner';
 import { PLACE_MARK } from '../actions/actionsTest';
 import { EMPTY } from '../constants/marks';
-import { moduleName } from '../moduleRegister';
+import moduleName from '../moduleName';
+
 
 export default (action$, store) => action$
   .ofType(PLACE_MARK)

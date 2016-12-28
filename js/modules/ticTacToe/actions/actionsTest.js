@@ -1,3 +1,4 @@
+import moduleName from '../moduleName';
 import transform from '../../../utils/buildActionTest';
 import * as ActionTest from './actionsTest';
 
@@ -8,4 +9,4 @@ export const RESET_BOARD = 'resetBoard';
 export const RESET_GAME = 'resetGame';
 export const SET_WINNER = 'setWinner';
 
-export default transform(ActionTest);
+export default transform(ActionTest, moduleName);

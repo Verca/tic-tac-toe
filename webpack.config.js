@@ -1,6 +1,7 @@
 /*eslint no-var: 0 */
 
 var webpack = require('webpack');
+var CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
   entry: ["babel-polyfill", './js/app.jsx'],
@@ -9,7 +10,13 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new CircularDependencyPlugin({
+      // exclude detection of files based on a RegExp
+      exclude: /a\.js|node_modules/,
+      // add errors to webpack instead of warnings
+      failOnError: false
+    })
   ],
   resolve: {
     extensions: ["", ".jsx", ".js"],
