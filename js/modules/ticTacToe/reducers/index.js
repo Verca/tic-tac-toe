@@ -1,19 +1,17 @@
 import * as gameReducer from './gameReducer';
 import * as Actions from '../actions/actionsTest';
+import moduleName from '../moduleName';
+
+const reducerMapping = {
+  [Actions.PLACE_MARK]: gameReducer.placeMark,
+  [Actions.SWITCH_PLAYERS]: gameReducer.switchPlayers,
+  [Actions.SET_WINNER]: gameReducer.setWinner,
+  [Actions.RESET_BOARD]: gameReducer.resetBoard,
+};
 
 export default (state = 0, action) => {
-	switch(action.type) {
-		case Actions.PLACE_MARK:
-      return gameReducer.placeMark(state, action);
-
-		case Actions.SWITCH_PLAYERS:
-			return gameReducer.switchPlayers(state, action);
-
-		case Actions.SET_WINNER:
-			return gameReducer.setWinner(state, action);
-
-		case Actions.RESET_BOARD:
-			return gameReducer.resetBoard(state, action);
-	}
+  if(reducerMapping[action.type] && action.moduleName === moduleName) {
+    return reducerMapping[action.type](state, action);
+  }
   return state;
 };
