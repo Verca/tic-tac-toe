@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import 'rxjs';
-import { Router, Route, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import store from './store';
 import { moduleName } from './modules/application/moduleRegister';
 
@@ -13,8 +13,9 @@ import '../assets/css/game.css';
 
 // load root route index
 import rootRoute from './modules/application/index';
+
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState: (state) => state[moduleName].toJS()
+  selectLocationState: (state) => state[moduleName].toJS(),
 });
 
 ReactDOM.render((

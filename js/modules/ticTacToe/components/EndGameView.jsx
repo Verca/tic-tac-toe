@@ -42,8 +42,8 @@ class Board extends React.Component {
   }
 }
 
-export default connect( state => (state => {
+export default connect(appState => (state => {
   return {
-    winner: state.get('winner')
-  }
-})(state[moduleName]))(Board);
+    winner: state.get('winner'),
+  };
+})(appState[moduleName]))(Board);

@@ -23,24 +23,24 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   module: {
-    // preLoaders: [
-    //   {
-    //     test: /\.jsx?$/,
-    //     exclude: /node_modules/,
-    //     loader: 'eslint-loader'
-    //   },
-    // ],
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader', 'eslint-loader']
+      },
+    ],
     loaders: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel'
       },
-      {
-        test: /\.js?$/,
-        exclude: /node_modules/,
-        loaders: ['babel-loader', 'eslint-loader']
-      },
+      // {
+      //   test: /\.jsx?$/,
+      //   exclude: /node_modules/,
+      //   loaders: ['babel-loader', 'eslint-loader']
+      // },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
     ],

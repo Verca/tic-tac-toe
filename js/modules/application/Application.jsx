@@ -6,7 +6,7 @@ import Menu from './Menu';
 
 class Application extends React.Component {
   static propTypes = {
-    children: React.PropTypes.any
+    children: React.PropTypes.any,
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -16,12 +16,12 @@ class Application extends React.Component {
   render() {
     return (
       <div>
-        <Menu/>
+        <Menu />
         {this.props.children}
       </div>);
   }
 }
 
 export default connect(
-  state => ({
+  () => ({
   }))(Application);

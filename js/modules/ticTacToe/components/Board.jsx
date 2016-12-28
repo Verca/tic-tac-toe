@@ -25,14 +25,13 @@ class Board extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.onMarkPlaced = (rowIndex, colIndex, mark, ev) => {
-      if(mark == Marks.X || mark == Marks.O) {
+      if (mark === Marks.X || mark === Marks.O) {
         return;
       }
-      const mark_img = this.props.nextToPlay === Marks.X ? X_IMG : O_IMG;
-      ev.target.style['background-image'] = `url(${mark_img})`;
-      this.props.dispatch(Actions.placeMark({rowIndex, colIndex}));
+      const markImg = this.props.nextToPlay === Marks.X ? X_IMG : O_IMG;
+      ev.target.style['background-image'] = `url(${markImg})`;
+      this.props.dispatch(Actions.placeMark({ rowIndex, colIndex }));
     };
   }
 
@@ -41,7 +40,7 @@ class Board extends React.Component {
   }
 
   resetBoard() {
-    if(document.getElementsByTagName('td')) {
+    if (document.getElementsByTagName('td')) {
       _.forEach(document.getElementsByTagName('td'), (element) => {
         element.style['background-image'] = '';
       });
@@ -50,7 +49,7 @@ class Board extends React.Component {
 
   renderCells(row, rowIndex) {
     return row.map((mark, colIndex) =>
-      <td key={colIndex} onClick={this.onMarkPlaced.bind(this, rowIndex, colIndex, mark)}></td>);
+      <td key={colIndex} onClick={this.onMarkPlaced.bind(this, rowIndex, colIndex, mark)} />);
   }
 
   renderRows() {
@@ -58,14 +57,14 @@ class Board extends React.Component {
     return board.map((row, index) =>
       (<tr key={index}>
         {this.renderCells(row, index)}
-      </tr>)
+      </tr>),
     );
   }
 
   render() {
     const { nextToPlay } = this.props;
 
-    if(this.props.board == moduleState.get('board')) {
+    if (this.props.board === moduleState.get('board')) {
       this.resetBoard();
     }
 
@@ -85,9 +84,9 @@ class Board extends React.Component {
   }
 }
 
-export default connect( state => (state => {
+export default connect(appState => (state => {
   return {
     board: state.get('board'),
-    nextToPlay: state.get('nextToPlay')
-  }
-})(state[moduleName]))(Board);
+    nextToPlay: state.get('nextToPlay'),
+  };
+})(appState[moduleName]))(Board);
