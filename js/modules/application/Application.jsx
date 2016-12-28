@@ -22,6 +22,4 @@ class Application extends React.Component {
   }
 }
 
-export default connect(
-  () => ({
-  }))(Application);
+export default connect()(Application);

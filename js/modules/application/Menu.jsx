@@ -24,6 +24,4 @@ class Menu extends React.Component {
   }
 }
 
-export default connect(
-  () => ({
-  }))(Menu);
+export default connect()(Menu);
