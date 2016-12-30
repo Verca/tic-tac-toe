@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import _ from 'lodash';
 
+import styles from '../styles/game.less';
 import moduleState from '../moduleState';
 import * as Marks from '../constants/marks';
 import Actions from '../actions/actionsTest';
@@ -69,10 +70,10 @@ class Board extends React.Component {
     }
 
     return (
-      <div>
+      <div className={styles.boardBody}>
         <h1>{GAME_NAME}</h1>
         <h2>{NEXT_PLAYER_MSG + nextToPlay}</h2>
-        <div id="table_container">
+        <div>
           <table>
             <tbody>
               {this.renderRows()}

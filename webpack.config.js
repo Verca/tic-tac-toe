@@ -2,9 +2,12 @@
 
 var webpack = require('webpack');
 var CircularDependencyPlugin = require('circular-dependency-plugin');
+var path = require('path');
+var glob = require('glob');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: ["babel-polyfill", './js/app.jsx'],
+  entry: ['babel-polyfill', './js/app.jsx', './assets/globalStyles/index.less'],
   output: {
     path: './dist',
     filename: 'bundle.js',
@@ -17,9 +20,11 @@ module.exports = {
       // add errors to webpack instead of warnings
       failOnError: false
     }),
+    // extract CSS into separate file
+    new ExtractTextPlugin('app.bundle.global.css')
   ],
   resolve: {
-    extensions: ["", ".jsx", ".js"],
+    extensions: ['', '.jsx', '.js'],
   },
   devtool: 'cheap-module-eval-source-map',
   module: {
@@ -41,8 +46,18 @@ module.exports = {
       //   exclude: /node_modules/,
       //   loaders: ['babel-loader', 'eslint-loader']
       // },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.png$/, loader: "url-loader?mimetype=image/png" }
+      {
+        test: /\.less$/,
+        include: [path.resolve(__dirname, 'assets'), path.resolve(__dirname, 'dist')],
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader'),
+      },
+      {
+        test: /\.less$/,
+        include: [path.resolve(__dirname, 'js', 'modules')],
+        loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[path][name]---[local]---[hash:base64:5]!less-loader'
+      },
+      { test: /\.css$/, loader: 'style-loader!css-loader?modules' },
+      { test: /\.png$/, loader: 'url-loader?mimetype=image/png' }
     ],
-  }
+  },
 };

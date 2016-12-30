@@ -5,6 +5,7 @@ import Actions from '../actions/actionsTest';
 import moduleName from '../moduleName';
 
 import { EMPTY } from '../constants/marks';
+import styles from '../styles/game.less';
 
 const TIE_MSG= 'It\'s a tie!';
 const WINNER_MSG = 'Winner is: ';
@@ -33,8 +34,8 @@ class Board extends React.Component {
   }
   render() {
     return (
-      <div id="shadow_background">
-        <div id="edit_item_modal">
+      <div className={styles.shadowBackground}>
+        <div className={styles.editItemModal}>
           <h2>{this.getGameResultMessage()}</h2>
           <button onClick={this.onResetClicked}>{RESET_GAME}</button>
         </div>

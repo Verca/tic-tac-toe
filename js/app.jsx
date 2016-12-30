@@ -7,9 +7,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import store from './store';
 import { moduleName } from './modules/application/moduleRegister';
 
-// load style sheets
-import '../node_modules/normalize.css/normalize.css';
-import '../assets/css/game.css';
 
 // load root route index
 import rootRoute from './modules/application/index';
