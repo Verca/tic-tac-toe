@@ -5,11 +5,11 @@ import 'rxjs';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import store from './store';
-import { moduleName } from './modules/application/moduleRegister';
+import { moduleName } from '../modules/application/moduleRegister';
 
 
 // load root route index
-import rootRoute from './modules/application/index';
+import rootRoute from '../modules/application/index';
 
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: (state) => state[moduleName].toJS(),

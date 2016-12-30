@@ -85,7 +85,8 @@ class Board extends React.Component {
   }
 }
 
-export default connect(appState => (state => {
+export default connect((appState, props) => (state => {
+  console.info('ahoj ', props);
   return {
     board: state.get('board'),
     nextToPlay: state.get('nextToPlay'),

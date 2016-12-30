@@ -7,7 +7,7 @@ var glob = require('glob');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './js/app.jsx', './assets/globalStyles/index.less'],
+  entry: ['babel-polyfill', './js/applicationSettings/app.jsx', './assets/globalStyles/index.less'],
   output: {
     path: './dist',
     filename: 'bundle.js',
@@ -31,6 +31,7 @@ module.exports = {
     preLoaders: [
       {
         test: /\.jsx?$/,
+        include: [path.resolve(__dirname, 'js', 'modules')],
         exclude: /node_modules/,
         loaders: ['babel-loader', 'eslint-loader']
       },

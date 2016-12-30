@@ -3,7 +3,7 @@ import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import _ from 'lodash';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
-import { epicsRoot, reducersRoot, initialState } from './utils/appRegister';
+import { epicsRoot, reducersRoot, initialState } from './appRegister';
 
 const reducers = combineReducers(reducersRoot);
 
