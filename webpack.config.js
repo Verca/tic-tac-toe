@@ -9,7 +9,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: [
     'babel-polyfill',
-    './js/applicationSettings/app.jsx',
+    './src/applicationSettings/app.jsx',
     'webpack-dev-server/client?http://localhost:8080',
     './assets/globalStyles/index.less'
   ],
@@ -37,7 +37,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        include: [path.resolve(__dirname, 'js')],
+        include: [path.resolve(__dirname, 'src')],
         exclude: /node_modules/,
         loaders: ['babel', 'eslint-loader']
       },
@@ -48,7 +48,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        include: [path.resolve(__dirname, 'js')],
+        include: [path.resolve(__dirname, 'src')],
         loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[path][name]---[local]---[hash:base64:5]!less-loader'
       },
       { test: /\.css$/, loader: 'style-loader!css-loader?modules' },

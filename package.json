@@ -1,5 +1,5 @@
 {
-  "name": "TicTacToe",
+  "name": "Redux-boilerplate",
   "version": "0.1.0",
   "scripts": {
     "build": "webpack -w --config=./webpack.config.js",
