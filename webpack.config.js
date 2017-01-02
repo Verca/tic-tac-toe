@@ -16,6 +16,7 @@ module.exports = {
   output: {
     path: './dist',
     filename: 'bundle.js',
+    publicPath: '/',
   },
   plugins: [
     // new webpack.NoErrorsPlugin(),

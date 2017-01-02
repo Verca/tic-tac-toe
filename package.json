@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "build": "webpack -w --config=./webpack.config.js",
-    "start": "webpack-dev-server --inline --content-base . --history-api-fallback",
+    "start": "webpack-dev-server --content-base . --history-api-fallback",
+    "start-inline": "webpack-dev-server --inline --content-base . --history-api-fallback",
     "test": "./node_modules/.bin/mocha --compilers js:babel-core/register ./js/**/*.spec.js || true"
   },
   "devDependencies": {
