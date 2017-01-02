@@ -5,7 +5,7 @@ import 'rxjs';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import store from './store';
-import { moduleName } from '../modules/application/moduleRegister';
+import moduleName from '../modules/application/moduleName';
 
 
 // load root route index

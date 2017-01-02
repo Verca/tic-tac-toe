@@ -1,4 +1,4 @@
-import Application from './Application';
+import Application from './components/Application';
 
 // here you define a new route to component
 import routeIndex from '../ticTacToe/routeIndex';
