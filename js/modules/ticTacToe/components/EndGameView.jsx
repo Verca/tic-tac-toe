@@ -10,7 +10,7 @@ import styles from '../styles/game.less';
 const TIE_MSG= 'It\'s a tie!';
 const WINNER_MSG = 'Winner is: ';
 const RESET_GAME = 'Reset game';
-class Board extends React.Component {
+class EndGameView extends React.Component {
   static propTypes = {
     dispatch: React.PropTypes.func,
     winner: React.PropTypes.string.isRequired,
@@ -43,8 +43,9 @@ class Board extends React.Component {
   }
 }
 
-export default connect(appState => (state => {
+export default connect((appState) => {
+  const moduleState = appState[moduleName];
   return {
-    winner: state.get('winner'),
+    winner: moduleState.get('winner'),
   };
-})(appState[moduleName]))(Board);
+})(EndGameView);

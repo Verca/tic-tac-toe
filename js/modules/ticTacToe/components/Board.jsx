@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 import _ from 'lodash';
 
 import styles from '../styles/game.less';
-import moduleState from '../moduleState';
+import moduleInitState from '../moduleState';
 import * as Marks from '../constants/marks';
 import Actions from '../actions/actionsTest';
 import moduleName from '../moduleName';
@@ -65,7 +65,7 @@ class Board extends React.Component {
   render() {
     const { nextToPlay } = this.props;
 
-    if (this.props.board === moduleState.get('board')) {
+    if (this.props.board === moduleInitState.get('board')) {
       this.resetBoard();
     }
 
@@ -85,10 +85,10 @@ class Board extends React.Component {
   }
 }
 
-export default connect((appState, props) => (state => {
-  console.info('ahoj ', props);
+export default connect((appState) => {
+  const moduleState = appState[moduleName];
   return {
-    board: state.get('board'),
-    nextToPlay: state.get('nextToPlay'),
+    board: moduleState.get('board'),
+    nextToPlay: moduleState.get('nextToPlay'),
   };
-})(appState[moduleName]))(Board);
+})(Board);
