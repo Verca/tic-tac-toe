@@ -43,16 +43,22 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        include: [path.resolve(__dirname, 'assets')],
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader'),
+        include: [path.resolve(__dirname, 'src')],
+        loader: ExtractTextPlugin.extract('style-loader',
+          'css-loader?modules&importLoaders=2&sourceMap&localIdentName=[path][name]---[local]---[hash:base64:5]!less-loader')
       },
       {
         test: /\.less$/,
-        include: [path.resolve(__dirname, 'src')],
-        loader: 'style-loader!css-loader?modules&importLoaders=2&sourceMap&localIdentName=[path][name]---[local]---[hash:base64:5]!less-loader'
+        include: [path.resolve(__dirname, 'assets')],
+        loader: ExtractTextPlugin.extract('style-loader','css-loader!less-loader'),
       },
-      { test: /\.css$/, loader: 'style-loader!css-loader?modules' },
-      { test: /\.png$/, loader: 'url-loader?mimetype=image/png' }
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
+      // needed for bootstrap's less
+      { test: /\.(woff|woff2)$/,   loader: "url?limit=10000&minetype=application/font-woff" },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&minetype=application/octet-stream" },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,    loader: "file" },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&minetype=image/svg+xml" }
     ],
   },
 };
