@@ -9,9 +9,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   entry: [
     'babel-polyfill',
+    './assets/globalStyles/index.less',
     './src/applicationSettings/app.jsx',
-    'webpack-dev-server/client?http://localhost:8080',
-    './assets/globalStyles/index.less'
+    'webpack-dev-server/client?http://localhost:8080'
   ],
   output: {
     path: './dist',
@@ -43,18 +43,18 @@ module.exports = {
       },
       {
         test: /\.less$/,
+        include: [path.resolve(__dirname, 'assets')],
+        loader: ExtractTextPlugin.extract('style-loader','css-loader!less-loader'),
+      },
+      {
+        test: /\.less$/,
         include: [path.resolve(__dirname, 'src')],
         loader: ExtractTextPlugin.extract('style-loader',
           'css-loader?modules&importLoaders=2&sourceMap&localIdentName=[path][name]---[local]---[hash:base64:5]!less-loader')
       },
-      {
-        test: /\.less$/,
-        include: [path.resolve(__dirname, 'assets')],
-        loader: ExtractTextPlugin.extract('style-loader','css-loader!less-loader'),
-      },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
-      // needed for bootstrap's less
+      // needed for bootstrap's styles
       { test: /\.(woff|woff2)$/,   loader: "url?limit=10000&minetype=application/font-woff" },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&minetype=application/octet-stream" },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,    loader: "file" },
