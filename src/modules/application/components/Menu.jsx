@@ -1,7 +1,8 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
+import styles from '../styles/styles.less';
 
 class Menu extends React.Component {
 
@@ -16,10 +17,9 @@ class Menu extends React.Component {
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to="/list">List</Link></li>
-          <li><Link to="/example">ExampleComponent</Link></li>
-          <li>Chart</li>
+        <ul className={styles.menu}>
+          <li><IndexLink to="/" className={styles.menuLink} activeClassName={styles.active}>Home</IndexLink></li>
+          <li><Link to="/example" className={styles.menuLink} activeClassName={styles.active}>ExampleComponent</Link></li>
         </ul>
       </div>);
   }
