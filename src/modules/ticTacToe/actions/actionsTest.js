@@ -1,5 +1,5 @@
 import moduleName from '../moduleName';
-import transform from '../../../applicationSettings/buildActionTest';
+import transform from '../../../applicationSettings/buildActions';
 import * as ActionTest from './actionsTest';
 
 export const PLACE_MARK = 'placeMark';

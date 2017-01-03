@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 
-import initialState from '../initialState';
+import initialState from '../moduleState';
 import { placeMark, switchPlayers } from './gameReducer';
-import { X, O } from '../components/ticTacToe/constants/marks';
+import { X, O } from '../constants/marks';
 
 describe('placeMark reduction', () => {
     let state;

@@ -17,7 +17,7 @@ class Menu extends React.Component {
     return (
       <div>
         <ul>
-          <li><Link to="/tic-tac-board">TicTacToe</Link></li>
+          <li><Link to="/list">List</Link></li>
           <li>Chart</li>
         </ul>
       </div>);

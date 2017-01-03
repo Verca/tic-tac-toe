@@ -11,7 +11,7 @@ const reducers = combineReducers(reducersRoot);
 
 const epicMiddleware = createEpicMiddleware(combineEpics(
   ...(_.flatten(
-    ...epicsRoot,
+    epicsRoot,
   )),
 ));
 

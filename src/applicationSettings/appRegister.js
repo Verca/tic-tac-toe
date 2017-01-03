@@ -24,7 +24,7 @@ export const initialState = _.reduce(MODULES, (state, module) => {
 }, {});
 
 export const epicsRoot = _.reduce(MODULES, (epics, module) => {
-  if (!module.epics || !module.epics.length === 0) return epics;
+  if (!module.epics || module.epics.length <= 0) return epics;
   epics.push(module.epics);
   return epics;
 }, []);
