@@ -18,6 +18,7 @@ class Menu extends React.Component {
       <div>
         <ul>
           <li><Link to="/list">List</Link></li>
+          <li><Link to="/example">ExampleComponent</Link></li>
           <li>Chart</li>
         </ul>
       </div>);

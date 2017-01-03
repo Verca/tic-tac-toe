@@ -37,7 +37,7 @@ class ListView extends React.Component {
   render() {
     return (
       <div>
-        <h2 className={styles.viewTitle}>My list component</h2>
+        <h2 className={styles.viewTitle}>My example list component</h2>
 
         <div className={classNames('col-xs-6', styles.listView)}>
           <LoadButton />

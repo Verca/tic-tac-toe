@@ -9,7 +9,7 @@ import moduleName from '../modules/application/moduleName';
 
 
 // load root route index
-import rootRoute from '../modules/routeIndex';
+import rootRoute from '../routeIndex';
 
 const history = syncHistoryWithStore(browserHistory, store, {
   selectLocationState: (state) => state[moduleName].toJS(),

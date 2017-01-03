@@ -1,4 +1,4 @@
 // define name of your module
-const moduleName = 'listOfItems';
+const moduleName = 'exampleComponent';
 
 export default moduleName;
