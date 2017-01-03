@@ -4,7 +4,7 @@ import Application from './modules/application/components/Application';
 import homeModule from './modules/homeModule/routeIndex';
 
 // here you define a new route to component
-import exampleComponent from './modules/exampleComponent/routeIndex';
+import exampleModule from './modules/exampleModule/routeIndex';
 // import listOfItemsRoute from './modules/listOfItems/routeIndex';
 
 export default {
@@ -12,7 +12,7 @@ export default {
     path: '/',
     component: Application,
     childRoutes: [
-      exampleComponent,
+      exampleModule,
       // listOfItemsRoute,
     ],
     indexRoute: homeModule,
