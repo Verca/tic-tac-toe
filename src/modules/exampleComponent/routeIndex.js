@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: 0 */
-import IndexComponent from './components/IndexComponent';
+import IndexComponent from '../../common/indexComponent/IndexComponent';
 import ListView from './components/ListView';
 
 // define url route for this module
