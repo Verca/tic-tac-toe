@@ -231,13 +231,22 @@ This project uses [redux-observable](https://github.com/redux-observable/redux-o
 It listens for action and triggers a code when this action is dispatched.
 Epics will **listen only for actions defined within the same module**.
 
-It's useful tool for:
+#####How to create an epic:
+1. Create a file with epic in the epic directory. See examples below.
+2. Register it in `epics/index.js` of this module.
+    - Import you epic. For example `import loadItems from './loadItems';` in the beginning of the file.
+    - Add line (element) `loadItems,` to the `export default []` array.
+
+#####It's useful tool for:
 - For handling asynchronous code like API calls. (This should be always handled in middleware.
 Never ever put asynchronous code to the reducers or components!)
 - Action chaining. For example if I want to trigger actions `Actions.saveUser(data)` and then `closeModal()`.
 
-Api call example:
+#####Api call example:
 ```javascript
+import { push } from 'react-router-redux';
+import Actions, { LOAD_ITEMS } from '../actions/actions';
+
 export default action$ => action$
   .ofType(LOAD_ITEMS)
   .mergeMap(() => fetchItems()) 
@@ -250,8 +259,13 @@ Description:
 - `.map(response => Actions.displayItems(response.data))`  - call displayItems action with fetched data
 - `.catch(failedAction => Observable.of(Actions.processError()))` -  error handle action
 
-Chain action example:
+#####Chain action example:
 ```javascript
+
+import { Observable } from 'rxjs';
+import { push } from 'react-router-redux';
+import Actions, { RESET_GAME } from '../actions/actions';
+
 export default (action$, store) => action$
   .ofType(RESET_GAME)
   .concatMap(action => {
