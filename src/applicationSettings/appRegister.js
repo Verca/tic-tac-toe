@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import MODULES from '../modulesRegister';
+import filterEpics from './filterEpics';
 
 // validity check
 MODULES.forEach(module => {
@@ -25,7 +26,7 @@ export const initialState = _.reduce(MODULES, (state, module) => {
 
 export const epicsRoot = _.reduce(MODULES, (epics, module) => {
   if (!module.epics || module.epics.length <= 0) return epics;
-  epics.push(module.epics);
+  epics.push(filterEpics(module.epics, module.name));
   return epics;
 }, []);
 
