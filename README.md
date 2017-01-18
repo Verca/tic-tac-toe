@@ -43,8 +43,7 @@ Let's say we want to create a module named "dashboard". We will use a module nam
 3. In the file `src/modules/dashboard/routeIndex.js` we need to change our main route:
     
     ```javascript
-    // define url route for this module
-    const mainRoute = 'dashboard';
+           path: 'dashboard'
     ```
     
 4. Now let's register our module in application! 
