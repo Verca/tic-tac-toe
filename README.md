@@ -282,4 +282,30 @@ Import for this action differ from other actions. It's always simply
 
 
 ### Reducers folder
-wip
+All files with reducer functions should be placed in this directory. 
+
+
+**Reducers will read only actions defined in the same module.**
+It's because of the condition in `reducers/index.js` - `if (reducerMapping[action.type] && action.moduleName === moduleName) {... `.
+We strongly recommend **not to change it!** Otherwise anybody in application could accidentally name action the same way like you and trigger your's module reducer.
+
+#####How to create an reducer:
+0. If there is no semantically good reducer file, create one. For example `reducers/listReducer.js`.
+
+    You should have reducers file named by purpose. For example having `listReducer.js` for reducers relating to display list of items 
+and another one `calendarReducer.js` for stuff related to calendar on other part of the page.
+1. In your reducer file place your new reducer function. For example in `listReducer.js` place 
+    ```javascript
+    export function loadItems(state) {
+      return state.set('loading', true);
+    }
+    ```
+2. Import your reducer to `reducers/index.js` if it's not there yet. For example put `import * as listReducer from './listReducer';` 
+in the beginning of the file.
+3. Register what action type should be mapped to your new reducer function in the file `reducers/index.js`. 
+Place it into the `reducerMapping` array:
+    ```javascript
+    const reducerMapping = {
+      [Actions.LOAD_ITEMS]: listReducer.loadItems,
+      ...
+    ```
