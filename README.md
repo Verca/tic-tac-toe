@@ -295,17 +295,21 @@ We strongly recommend **not to change it!** Otherwise anybody in application cou
     You should have reducers file named by purpose. For example having `listReducer.js` for reducers relating to display list of items 
 and another one `calendarReducer.js` for stuff related to calendar on other part of the page.
 1. In your reducer file place your new reducer function. For example in `listReducer.js` place 
+    
     ```javascript
     export function loadItems(state) {
       return state.set('loading', true);
     }
     ```
+    
 2. Import your reducer to `reducers/index.js` if it's not there yet. For example put `import * as listReducer from './listReducer';` 
 in the beginning of the file.
 3. Register what action type should be mapped to your new reducer function in the file `reducers/index.js`. 
 Place it into the `reducerMapping` array:
+
     ```javascript
     const reducerMapping = {
       [Actions.LOAD_ITEMS]: listReducer.loadItems,
       ...
     ```
+    
