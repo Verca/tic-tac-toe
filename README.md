@@ -158,7 +158,7 @@ export default {
 };
 ```
 
-### Actions folder
+### Actions directory
         actions.js
 Actions contains only one file `actions.js`. It's a place to define actions related to this module.
 
@@ -178,8 +178,8 @@ For example `export const LOAD_ITEMS = 'loadItems';`
     - then you can simply call `Actions.loadItems()`
         - note: if you want to add payload to this action, then add it as a first parameter (second parameter won't be passed at all). For passing more items wrap them in the object.
         
-### Components folder
-Components folder should contain all module's components. You will find example components in `exampleModule` of this project. 
+### Components directory
+Components directory should contain all module's components. You will find example components in `exampleModule` of this project. 
 
 Important parts of component:
 
@@ -215,7 +215,7 @@ export default connect((appState) => {
 })(LoadButton);
 ```
 
-### Constants folder
+### Constants directory
 All files with constants which relates to this module should go here. 
 
 Example: we can place a file `httpUrls.js` with this content:
@@ -225,7 +225,7 @@ export const GET_LIST = 'https://jsonplaceholder.typicode.com/users';
 export const GET_ITEM = 'https://jsonplaceholder.typicode.com/user';
 ```
 
-### Epics folder
+### Epics directory
 
 This project uses [redux-observable](https://github.com/redux-observable/redux-observable) middleware.
 It listens for action and triggers a code when this action is dispatched.
@@ -281,7 +281,7 @@ Import for this action differ from other actions. It's always simply
     import { push } from 'react-router-redux';
 
 
-### Reducers folder
+### Reducers directory
 All files with reducer functions should be placed in this directory. 
 
 State in this project is stored as 
