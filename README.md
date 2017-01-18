@@ -327,6 +327,7 @@ You can use [classNames](https://github.com/JedWatson/classnames) in your compon
 
 Another classNames example: 
 - `classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'`
+
 #####How to add style in you component
 1. Create your style. For example: in `styles/listView.less` create style
     
