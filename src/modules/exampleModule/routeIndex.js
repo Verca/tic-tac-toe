@@ -1,50 +1,22 @@
-/* eslint no-unused-vars: 0 */
 import IndexComponent from '../../common/indexComponent/IndexComponent';
 import ListView from './components/ListView';
 
-// define url route for this module
-const mainRoute = 'example';
-
-// define main component for module (this component will be displayed on mainRoute)
-const mainComponent = ListView;
-
-// here you can define nested routes
-// you have to define at least a path and a component
-const arrayOfChildrenRotes = [
-  {
-    // path: 'detail',
-    // component: DetailView,
-  },
-];
-
-// ----------------------------------------------------------
-// ----------------------------------------------------------
-// ----------------------------------------------------------
-// ----------------------------------------------------------
-// REWRITE THIS PART ONLY IF YOU KNOW WHAT YOU ARE DOING
-
-// define index component for module (this component will be always displayed)
-const indexComponent = IndexComponent;
+/**
+ * path - defines url route for this module
+ * indexRoute/component - defines home component for module (this component will be
+ *                        displayed on mainRoute)
+ * childRoutes -  are nested routes
+ *             - you have to define at least a path and a component for each child route
+ *
+ * component - default settings, don't change it unless you know what you're doing.
+ *           - This component will be always displayed when main route is active.
+ **/
 
 export default {
-  path: mainRoute,
-  // async load of children routes
-  getChildRoutes(partialNextState, cb) {
-    require.ensure([], () => {
-      cb(null, arrayOfChildrenRotes);
-    });
+  path: 'example',
+  indexRoute: {
+    component: ListView,
   },
-  // async load of the component (loads only when it's needed)
-  getComponent(nextState, cb) {
-    require.ensure([], () => {
-      cb(null, indexComponent);
-    });
-  },
-
-  getIndexRoute(partialNextState, cb) {
-    // do something async here
-    cb(null, {
-      component: mainComponent,
-    });
-  },
+  childRoutes: [],
+  component: IndexComponent,
 };
