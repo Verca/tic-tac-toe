@@ -328,13 +328,17 @@ You can use [classNames](https://github.com/JedWatson/classnames) in your compon
 Another classNames example: `classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'`
 #####How to add style in you component
 1. Create your style. For example: in `styles/listView.less` create style
+    
     ```css
     .viewTitle {
       padding: 15px;
     }
     ```
+    
 2. Import it to your component. For example in the beginning of the file import `import styles from '../styles/listView.less';`
 3. Then simply set the style with `styles` prefix.
+    
     ```html
     <h2 className={styles.viewTitle}>My example list component</h2>
     ```
+    
