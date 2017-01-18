@@ -284,12 +284,16 @@ Import for this action differ from other actions. It's always simply
 ### Reducers folder
 All files with reducer functions should be placed in this directory. 
 
+State in this project is stored as 
+[ImmutableJs](https://facebook.github.io/immutable-js/) structure. To access props you need to call `get` or `getIn`
+and to set prop you need to call `set` or `setIn` see the [documentation](https://facebook.github.io/immutable-js/).
+
 
 **Reducers will read only actions defined in the same module.**
 It's because of the condition in `reducers/index.js` - `if (reducerMapping[action.type] && action.moduleName === moduleName) {... `.
 We strongly recommend **not to change it!** Otherwise anybody in application could accidentally name action the same way like you and trigger your's module reducer.
 
-#####How to create an reducer:
+#####How to create a reducer:
 0. If there is no semantically good reducer file, create one. For example `reducers/listReducer.js`.
 
     You should have reducers file named by purpose. For example having `listReducer.js` for reducers relating to display list of items 
@@ -312,4 +316,25 @@ Place it into the `reducerMapping` array:
       [Actions.LOAD_ITEMS]: listReducer.loadItems,
       ...
     ```
-    
+
+### Styles directory
+This project uses **less** for styling. Any local module styles should be placed in this directory.
+
+You can use [classNames](https://github.com/JedWatson/classnames) in your component. It's handy tool for conditional style composing and we highly recommend it. 
+```html
+<div className={classNames('col-xs-6', styles.listView)}>
+```
+
+Another classNames example: `classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'`
+#####How to add style in you component
+1. Create your style. For example: in `styles/listView.less` create style
+    ```css
+    .viewTitle {
+      padding: 15px;
+    }
+    ```
+2. Import it to your component. For example in the beginning of the file import `import styles from '../styles/listView.less';`
+3. Then simply set the style with `styles` prefix.
+    ```html
+    <h2 className={styles.viewTitle}>My example list component</h2>
+    ```
