@@ -128,39 +128,38 @@ In the `moduleRegister.js` all important redux index files and module settings f
 #### moduleState.js
 In the `moduleState.js` you specify state of your module. 
 
- - This part of the state will be accessible only from local module's reducers (other module's reducers can't see this part of application state)
+ - This part of the state will be accessible only from reducers of this module (other module's reducers can't see this part of application state)
  - However every component can read the whole app state. If you are interested in module's part of component, then you need to access moduleName property of it. (for more info see components documentation of the module)
- - Also every epic can read the whole app state (none of the epics should be writing to the state!). Again, if you are interested in module's part of component, then you need to access moduleName property of it. See module's epic documentation.
+ - Also every epic can read the whole app state (none of the epics should be writing to the state!). If you are interested in module's part of component, then you need to access moduleName property of it. See module's epic documentation.
 ```javascript
 export default Immutable.fromJS({
-  // here you'll put your module's state object
+  // here you'll put your module's state
 });
 ```
 #### routeIndex.js
 In the `routeIndex.js` you specify routes of your module. 
 
-- **Url route:** For specifying url route of your module, change `mainRoute` variable (you should not put any slashes in the beginning or the end of the string!).
-- **Main (home) component:** To specify home component (component, which will be visible, when you enter the route url), please assign it to the `mainComponent` variable (don't forget to import this component to the file first).
-- **Children routes:** Children routes are routes nested in our defined `mainRoute`. In example below, when you enter route `example/detail`, then you will see `DetailView` component (and not `ListView` anymore). 
+- **Url route:** For specifying url route of your module, change `path` property (you should not put any slashes in the beginning or the end of the string!).
+- **Main (home) component:** To specify home component (component, which will be visible, when you enter the route url), please assign it to the `indexRoute/component` property (don't forget to import this component to the file first).
+- **Children routes:** Children routes are routes nested in our defined `path`. In example below, when you in your browser enter route `example/detail`, then you will see `DetailView` component (and not `ListView` anymore). 
     
-    Every object in this array represents a new route object. If want to define more nested routes for it, then you can add `childrenRoute` array to the object.
+    Every object in this array represents a new route object. If want to define more nested routes for it, then you can add `childnRoute` array to the object.
+- **Default component:** default settings, don't change it unless you know what you're doing. This component will be always displayed when main route is active. Always add `{this.props.children}` to this component or none of defined routes here will be displayed. See documentation for `react-router`.
 
 ```javascript
-const mainRoute = 'example';
-
-const mainComponent = ListView;
-
-const arrayOfChildrenRotes = [
-  {
-    path: 'detail',
-    component: DetailView,
+export default {
+  path: 'example',
+  indexRoute: {
+    component: ListView,
   },
-];
+  childRoutes: [],
+  component: IndexComponent,
+};
 ```
 
 ### Actions folder
         actions.js
-Actions contains only one file `actions.js`. Every module's action is registered in it as variable.
+Actions contains only one file `actions.js`. It's a place to define actions related to this module.
 
 ```javascript
 ... 
@@ -183,8 +182,76 @@ Components folder should contain all module's components. You will find example 
 
 Important parts of component:
 
+##### shouldComponentUpdate
+This project uses [ImmutableJs](https://facebook.github.io/immutable-js/) for application state. `shallowCompare` function in this case improves component performance.
+Leave this function as it is in all of yous components.
+
 ```javascript
-    
+   shouldComponentUpdate(nextProps, nextState) {
+     // always leave shallowCompare in here
+     return shallowCompare(this, nextProps, nextState);
+   }   
 
 ```
+##### propTypes
+Always define all your props of your component.
+```javascript
+  static propTypes = {
+    dispatch: React.PropTypes.func,
+    loading: React.PropTypes.bool,
+  }
+```
     
+##### connect
+To define component props taken from the application state. You can use either variable `appState` or `moduleState` (that's simply a shortcut to access module's state).
+
+```javascript
+export default connect((appState) => {
+  const moduleState = appState[moduleName];
+  return {
+    loading: moduleState.get('loading'),
+  };
+})(LoadButton);
+```
+
+### Constants folder
+All files with constants which relates to this module should go here. 
+
+Example: we can place a file `httpUrls.js` with this content:
+
+```javascript
+export const GET_LIST = 'https://jsonplaceholder.typicode.com/users';
+export const GET_ITEM = 'https://jsonplaceholder.typicode.com/user';
+```
+
+### Epics folder
+
+This project uses [redux-observable](https://github.com/redux-observable/redux-observable) middleware.
+It's useful tool for:
+- For handling asynchronous code like API calls. (This should be always handled in middleware.
+Never ever put asynchronous code to the reducers or components!)
+- Action chaining. For example if I want to trigger actions `Actions.saveUser(data)` and then `closeModal()`.
+
+Api call example:
+```javascript
+export default action$ => action$
+  .ofType(LOAD_ITEMS)
+  .mergeMap(() => fetchItems()) 
+  .map(response => Actions.displayItems(response.data))
+  .catch(failedAction => Observable.of(Actions.processError())); //  error handle action
+```
+Description: 
+- `ofType(LOAD_ITEMS)` - listen only for LOAD_ITEMS action type. 
+- `.mergeMap(() => fetchItems())` - trigger API call. 
+- `.map(response => Actions.displayItems(response.data))`  - call displayItems action with fetched data
+- `.catch(failedAction => Observable.of(Actions.processError()))` -  error handle action
+
+Chain action example:
+```javascript
+export default (action$, store) => action$
+  .ofType(RESET_GAME)
+  .concatMap(action => {
+    return Observable.of(resetBoard(), push('/tic-tac-board'));
+  });
+```
+Description: This epic takes 
