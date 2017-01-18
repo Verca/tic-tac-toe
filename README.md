@@ -342,4 +342,26 @@ Another classNames example:
     ```html
     <h2 className={styles.viewTitle}>My example list component</h2>
     ```
+
+### Utils directory
+This directory should contain `js` files with exportable functions and
+selectors, which are too long or used multiple times. This helps keep components, reducers and epics clean.
+
+For example:
+- `apiCalls.js`:
+
+    ```javascript
+    import axios from 'axios';
+    import { GET_LIST } from '../constants/httpUrls';
     
+    export const fetchItems = () => axios.get(GET_LIST);
+    ```
+- `commonSelectors.js`
+
+    ```javascript
+    import _ from 'lodash';
+    
+    const getActiveUsers = (users) => _.filter(users, {active: true});
+    
+    const sortByAge = (users) => _.sortBy(users, (user) => user.age);
+    ````
