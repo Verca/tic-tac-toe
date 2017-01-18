@@ -228,6 +228,9 @@ export const GET_ITEM = 'https://jsonplaceholder.typicode.com/user';
 ### Epics folder
 
 This project uses [redux-observable](https://github.com/redux-observable/redux-observable) middleware.
+It listens for action and triggers a code when this action is dispatched.
+Epics will **listen only for actions defined within the same module**.
+
 It's useful tool for:
 - For handling asynchronous code like API calls. (This should be always handled in middleware.
 Never ever put asynchronous code to the reducers or components!)
@@ -255,4 +258,14 @@ export default (action$, store) => action$
     return Observable.of(resetBoard(), push('/tic-tac-board'));
   });
 ```
-Description: This epic takes 
+Description: This epic triggers on action type RESET_GAME defined in the same module.
+Then it will trigger `resetBoard()` action and then action `push('/tic-tac-board')`.
+
+**Note:** `push('/tic-tac-board')` is a [react-redux-router](https://github.com/reactjs/react-router-redux) action. It expects destination route as an argument.
+Import for this action differ from other actions. It's always simply 
+    
+    import { push } from 'react-router-redux';
+
+
+### Reducers folder
+wip
