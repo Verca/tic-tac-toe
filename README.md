@@ -1,4 +1,4 @@
-# Tic tac toe
+#  React/Redux boilerplate
 
 ## Install
 
@@ -84,12 +84,14 @@ Let's say we want to create a module named "dashboard". We will use a module nam
         };
         ```
 5. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add `dashboard` link:
-    ```jsx harmony
+    
+    ```
         <ul className={styles.menu}>
          ...
          <li><Link to="/dashboard" className={styles.menuLink} activeClassName={styles.active}>Dashboard</Link></li>
         </ul>
     ```
+    
 Now you are all set! You can launch application and navigate to the new module.
 
 ## Module documentation
