@@ -362,7 +362,7 @@ For example:
     ```javascript
     import _ from 'lodash';
     
-    const getActiveUsers = (users) => _.filter(users, {active: true});
+    export const getActiveUsers = (users) => _.filter(users, {active: true});
     
-    const sortByAge = (users) => _.sortBy(users, (user) => user.age);
+    export const sortByAge = (users) => _.sortBy(users, (user) => user.age);
     ````
