@@ -1,3 +1,4 @@
+/* eslint no-undef:0 */
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
@@ -9,16 +10,13 @@ import styles from '../styles/listView.less';
 
 class LoadButton extends React.Component {
   static propTypes = {
-    dispatch: React.PropTypes.func,
-    loading: React.PropTypes.bool,
+    // place your code here
   }
 
   constructor(props) {
     super(props);
 
-    this.loadItems = () => {
-      this.props.dispatch(Actions.loadItems());
-    };
+    // place your code here
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -31,17 +29,15 @@ class LoadButton extends React.Component {
       'btn btn-primary',
       styles.loadButton,
     );
-    return (
-      <button className={buttonStyles} disabled={this.props.loading} onClick={this.loadItems}>
-        {this.props.loading ? 'Loading...' : 'Load more'}
-      </button>
-    );
+    return (<div>
+      { /* place your code here */ }
+    </div>);
   }
 }
 
 export default connect((appState) => {
   const moduleState = appState[moduleName];
   return {
-    loading: moduleState.get('loading'),
+    // place your code here
   };
 })(LoadButton);

@@ -1,3 +1,4 @@
+/* eslint no-undef:0, 'react/self-closing-comp':0, no-unused-vars:0 */
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
@@ -33,9 +34,9 @@ class ListView extends React.Component {
   }
 }
 
-export default connect(/*(appState) => {
+export default connect((appState) => {
   const moduleState = appState[moduleName];
   return {
   // place your code here
   };
-}*/)(ListView);
+})(ListView);
