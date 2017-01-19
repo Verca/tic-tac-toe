@@ -15,7 +15,7 @@ To run this application, install it and then run these commands (in separate ter
 
 Application runs on `localhost:8080`
 
-In the case of trouble, try to run `npm install -g webpack-dev-server` and then try to run `npm run start` again.
+In case of trouble, try to run `npm install -g webpack-dev-server` and then try to run `npm run start` again.
 
 ## Unit tests
 You can check `src/modules/exampleModule/reducers/listReducer.spec.js` to see an example of unit testing. 
@@ -25,18 +25,18 @@ To run tests, please execute this command:
 `npm run test`
 
 # Modules
-Module is an independent unit. You can perceive it as an independent tab in the page. It has it's own routing address, isolated part of the global application state, reducers, actions, epics and components. 
+Each module is an independent unit. You can perceive it as an independent tab in the page. It has its own routing address, isolated part of the global application state, reducers, actions, epics and components. 
 
 ##How to create a new module
 
 Let's say we want to create a module named "dashboard". We will use a module named `exampleModule` as our initial template.
 
-1. Copy folder `src/modules/exampleModule` to the same source file as `src/modules/dashboard`
+1. Copy the folder `src/modules/exampleModule` to the same source file as `src/modules/dashboard`
 
     ```
         cp -R src/modules/exampleModule/ src/modules/dashboard
     ```
-2. In the file `src/modules/dashboard/moduleName.js` change name of module: 
+2. In the file `src/modules/dashboard/moduleName.js`, change the name of the module: 
 
     `const moduleName = 'dashboard';` 
 
@@ -68,7 +68,7 @@ Let's say we want to create a module named "dashboard". We will use a module nam
            import dashboard from './modules/dashboard/routeIndex';
         ```
         
-        then add imported `dashboard` to the array of childRoutes
+        then add the imported `dashboard` to the array of childRoutes
         ```javascript
         export default {
           childRoutes: [{
@@ -82,7 +82,7 @@ Let's say we want to create a module named "dashboard". We will use a module nam
           }],
         };
         ```
-5. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add `dashboard` link:
+5. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add a `dashboard` link:
     
     ```
         <ul className={styles.menu}>
@@ -91,7 +91,7 @@ Let's say we want to create a module named "dashboard". We will use a module nam
         </ul>
     ```
     
-Now you are all set! You can launch application and navigate to the new module.
+Now you are all set! You can launch the application and navigate to the new module.
 
 ## Module documentation
 We will describe the whole module structure in this section. 
@@ -110,7 +110,7 @@ We will describe the whole module structure in this section.
         |moduleState.js
         |routeIndex.js
 ### Config files of the module        
-First lets explain config files located in the root directory of the module.
+First let's explain config files located in the root directory of the module.
 
         moduleName.js
         moduleRegister.js
@@ -118,7 +118,7 @@ First lets explain config files located in the root directory of the module.
         routeIndex.js
         
 #### moduleName.js
-In the `moduleName.js` you specify name of your module. This name have to be unique in the project.  Just set the `moduleName` variable.
+In the `moduleName.js` you specify the name of your module. This name has to be unique in the project. Just set the `moduleName` variable.
 ```javascript
 const moduleName = 'exampleComponent';
 ```
@@ -127,10 +127,10 @@ const moduleName = 'exampleComponent';
 In the `moduleRegister.js` all important redux index files and module settings files are linked together for this module (module state, epics, reducers and module name). You should not change this file unless you know what you are doing. 
 
 #### moduleState.js
-In the `moduleState.js` you specify state of your module. 
+In the `moduleState.js` you specify the state of your module. 
 
  - This part of the state will be accessible only from reducers of this module (other module's reducers can't see this part of application state)
- - However every component can read the whole app state. If you are interested in module's part of component, then you need to access moduleName property of it. (for more info see components documentation of the module)
+ - However, every component can read the whole app state. If you are interested in module's part of component, then you need to access moduleName property of it. (for more info see components documentation of the module)
  - Also every epic can read the whole app state (none of the epics should be writing to the state!). If you are interested in module's part of component, then you need to access moduleName property of it. See module's epic documentation.
 ```javascript
 export default Immutable.fromJS({
@@ -141,7 +141,7 @@ export default Immutable.fromJS({
 In the `routeIndex.js` you specify routes of your module. 
 
 - **Url route:** For specifying url route of your module, change `path` property (you should not put any slashes in the beginning or the end of the string!).
-- **Main (home) component:** To specify home component (component, which will be visible, when you enter the route url), please assign it to the `indexRoute/component` property (don't forget to import this component to the file first).
+- **Main (home) component:** To specify home component (the component which will be visible when you enter the route url), please assign it to the `indexRoute/component` property (don't forget to import this component to the file first).
 - **Children routes:** Children routes are routes nested in our defined `path`. In example below, when you in your browser enter route `example/detail`, then you will see `DetailView` component (and not `ListView` anymore). 
     
     Every object in this array represents a new route object. If want to define more nested routes for it, then you can add `childnRoute` array to the object.
