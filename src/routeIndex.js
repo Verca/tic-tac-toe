@@ -5,6 +5,7 @@ import homeModule from './modules/homeModule/routeIndex';
 
 // here you define a new route to component
 import exampleModule from './modules/exampleModule/routeIndex';
+import tutorialModule from './modules/tutorialModule/routeIndex';
 
 export default {
   childRoutes: [{
@@ -12,6 +13,7 @@ export default {
     component: Application,
     childRoutes: [
       exampleModule,
+      tutorialModule,
     ],
     indexRoute: homeModule,
   }],
