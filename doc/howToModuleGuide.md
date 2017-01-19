@@ -20,12 +20,10 @@ Open a file `components/ListView.jsx`. You will see a skeleton of the component.
 ####1. Read list from  the application state
 
 To access `items` from component we need to define them in the `connect` function. 
-- uncomment part on lines 36 to 41. Then to the return function place this
+- on line 40 place this (into the returned object):
 
 ```javascript
-  return {
-    items: moduleState.get('items'),
-  }
+  items: moduleState.get('items'),
 ```
 
 `connect` function only defines which parts of the state can our component read. But to be able to access them we 
@@ -58,7 +56,21 @@ Then add this to line 30 (inside of `<div className={classNames('col-xs-6', styl
   {this.renderList()}
   ```
 
-Done! Now if you go to http://localhost:8080/tutorial-module you shoul see our list displayed.
+Done! Now if you go to http://localhost:8080/tutorial-module you should see our list displayed.
 
 ## 3. Add 'Load items button'
 Now let's add a button which will trigger loading of more items into our list. 
+
+When we click the button, we want to disable it until loading of new items is not done.
+
+####1. Add loading variable to the state
+In file `./moduleState.js` place this on line 8 (below the `items`) 
+
+```javascript
+  loading: false,
+```
+
+####2. Connect props to the component
+Now open file `components/LoadButton.js`
+- add this
+
