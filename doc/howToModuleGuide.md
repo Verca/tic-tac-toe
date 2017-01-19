@@ -61,5 +61,4 @@ Then add this to line 30 (inside of `<div className={classNames('col-xs-6', styl
 Done! Now if you go to http://localhost:8080/tutorial-module you shoul see our list displayed.
 
 ## 3. Add 'Load items button'
-Now let's add a button to trigger load more items to our ...
-wip
+Now let's add a button which will trigger loading of more items into our list. 
