@@ -113,11 +113,28 @@ To register action `loadItems` place this code to the line 5 in the `actions/act
   export const LOAD_ITEMS = 'loadItems';
 ```
 
-###2. Set `loading` to `true` in reducers
+###2. Set `loading` in reducers
 After we dispatch any action it will always goes first through reducers and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
 ####1. map action LOAD_ITEMS to the right reducer
   - open file `reducers/index.js` and import this in the beginning of the file:
   
   ```javascript
     import * as Actions from '../actions/actions';
+    import * as listReducer from './listReducer';
+  ```
+
+  - add this code at the line 6 (inside of the `reducerMapping` array):
+  
+ ```javascript
+  [Actions.LOAD_ITEMS]: listReducer.loadItems,
+ ```
+ 
+We mapped action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
+  - create file `reducers/listReducer.js`
+  - into this file place this code:
+  
+  ```javascript
+  export function loadItems(state) {
+    return state.set('loading', true);
+  }
   ```
