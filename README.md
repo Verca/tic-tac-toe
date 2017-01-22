@@ -30,12 +30,12 @@ A module is an independent unit. You can perceive it as an independent tab in th
 
 Let's say we want to create a module named "dashboard". We will use a module named `exampleModule` as our initial template.
 
-1. Copy folder `src/modules/exampleModule` to the same source file as `src/modules/dashboard`
+1. Copy the folder `src/modules/exampleModule` to the same source file as `src/modules/dashboard`
 
     ```
         cp -R src/modules/exampleModule/ src/modules/dashboard
     ```
-2. In the file `src/modules/dashboard/moduleName.js` change name of module: 
+2. In the file `src/modules/dashboard/moduleName.js`, change the name of the module: 
 
     `const moduleName = 'dashboard';` 
 
@@ -67,7 +67,7 @@ Let's say we want to create a module named "dashboard". We will use a module nam
            import dashboard from './modules/dashboard/routeIndex';
         ```
         
-        then add imported `dashboard` to the array of childRoutes
+        then add the imported `dashboard` to the array of childRoutes
         ```javascript
         export default {
           childRoutes: [{
@@ -81,7 +81,7 @@ Let's say we want to create a module named "dashboard". We will use a module nam
           }],
         };
         ```
-5. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add `dashboard` link:
+5. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add a `dashboard` link:
     
     ```
         <ul className={styles.menu}>
@@ -108,7 +108,7 @@ This section describes the entire module structure.
         |moduleState.js
         |routeIndex.js
 ### Module config files        
-First lets explain config files located in the root directory of the module.
+First let's explain config files located in the root directory of the module.
 
         moduleName.js
         moduleRegister.js
@@ -116,7 +116,8 @@ First lets explain config files located in the root directory of the module.
         routeIndex.js
         
 #### moduleName.js
-In the `moduleName.js` you specify name of your module. This name has to be unique in the project. Just set the `moduleName` variable.
+In the `moduleName.js` you specify the name of your module. This name has to be unique in the project. Just set the `moduleName` variable.
+
 ```javascript
 const moduleName = 'exampleComponent';
 ```
@@ -125,11 +126,12 @@ const moduleName = 'exampleComponent';
 In the `moduleRegister.js,` all important redux index files and module settings files are linked together for this module (module state, epics, reducers, and module name). You should not change this file unless you know what you are doing. 
 
 #### moduleState.js
-In the `moduleState.js` you specify state of your module. 
+In the `moduleState.js` you specify the state of your module. 
 
  - This part of the state will be accessible only from reducers of this module (other module's reducers can't see this part of application state)
  - However, every component can read the whole app state. If you are interested in module's part of a component, then you need to access the moduleName property of it. (for more info see components documentation of the module)
  - Also, every epic can read the whole app state (none of the epics should be writing to the state!). If you are interested in module's part of a component, then you need to access the moduleName property of it. See module's epic documentation.
+
 ```javascript
 export default Immutable.fromJS({
   // here you'll put your module's state
