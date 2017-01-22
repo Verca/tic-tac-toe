@@ -1,6 +1,13 @@
 # Module tutorial
 
-In this chapter, we will create a simple module together.  This module will contain a button **Load items** and a list of items. Anytime we click on the button, new items will be loaded and concatenated to the displayed list.
+In this chapter, we will code a simple module together. This module will contain a button **Load items** and a list of items. Anytime we click on the button, new items will be loaded and concatenated to the displayed list.
+
+
+## 0. Create a new module
+As a first step, follow this guide and create a new tutorial module in our application:
+
+- [How to create your own tutorial module](docs/howToCreateTutorial.md)
+
 
 ## 1. Mock list at module's state
 First, we mock data for our list. Note that any data should be always placed in our module's state. (We will clear this mock once we set-up loading of data.)
@@ -106,44 +113,44 @@ Now open file `components/LoadButton.js`
   
 ## 4. Load items
 When user clics to the button, we want to trigger action which will load more items to the list.
-###1. Register `loadItems' action
+####1. Register `loadItems' action
 To register action `loadItems` place this code to the line 5 in the `actions/actions.js`
 
 ```javascript
   export const LOAD_ITEMS = 'loadItems';
 ```
 
-###2. Set `loading` in reducers
+####2. Set `loading` in reducers
 After we dispatch any action it will always goes first through reducers and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
-####1. map action LOAD_ITEMS to the right reducer
+- map action LOAD_ITEMS to the right reducer
   - open file `reducers/index.js` and import this in the beginning of the file:
   
-  ```javascript
+    ```javascript
     import * as Actions from '../actions/actions';
     import * as listReducer from './listReducer';
-  ```
+    ```
 
   - add this code at the line 6 (inside of the `reducerMapping` array):
   
- ```javascript
-  [Actions.LOAD_ITEMS]: listReducer.loadItems,
- ```
- 
-We mapped action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
+     ```javascript
+      [Actions.LOAD_ITEMS]: listReducer.loadItems,
+     ```
+     
+- We mapped action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
   - create file `reducers/listReducer.js`
   - into this file place this code:
   
-  ```javascript
-  export function loadItems(state) {
-    return state.set('loading', true);
-  }
-  ```
+      ```javascript
+      export function loadItems(state) {
+        return state.set('loading', true);
+      }
+      ```
   
 `state.set('loading', true)` is assigning into immutablejs Map:
 
 Application state is kept as [immutablejs](https://facebook.github.io/immutable-js/) structure. This improves rendering performance a lot. Anything you save to the state should be immutable (or primitive type). For more info you can read official documentation or for example this post [http://thomastuts.com/blog/immutable-js-101-maps-lists.html](http://thomastuts.com/blog/immutable-js-101-maps-lists.html)
 
-###2. Trigger Api call for load more items
+####3. Trigger Api call for load more items
 After action went through reducers, it will enter epics. Epics are from (redux-observables)[https://github.com/redux-observable/redux-observable] middleware (check original documentation and also our live examples in this documentation). Epics could be used for handling asynchronous code like API calls or action chaining (for more information read documentation for Module - epic section). 
 
 - To load a data let's create an epic
@@ -164,10 +171,10 @@ After action went through reducers, it will enter epics. Epics are from (redux-o
 
 Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
-## 5. Display loaded items
+## 4. Display loaded items
 In `epics/loadItems.js` we define to trigger an action `Actions.displayItems` when data gets loaded. This action is hoever not defined in our module yet.
 
-### Define action displayItems
+#### 1. Define action displayItems
 Place this code at line 6 in file `actions/actions.js`:
 
 ```javascript
@@ -176,7 +183,7 @@ Place this code at line 6 in file `actions/actions.js`:
 
 Now we can dispatch `Actions.displayItems`.
 
-### Save loaded items to the state
+#### 2. Save loaded items to the state
 When we dispatch the`displayItems` action from an epic, we also add a payload to it. Payload are data we attach to the action as a parameter of the function (in this case result from an Api call) - `Actions.displayItems(data)` . Now in reducer we will save this data to the application state. By saving data to the state we trigger automatic update of the component dislaying the list od data.
 
 - First, we need to create a reducer function. Add this function into the `reducers/listReducer.js` file at line 5:
@@ -204,8 +211,8 @@ When we dispatch the`displayItems` action from an epic, we also add a payload to
 
 - Now we map the 'displayList' action to the new reducer function. Add this code at line 7 (inside of the `reducerMapping` array):
 
-```javascript
-    [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
-```
+    ```javascript
+        [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
+    ```
 
 We are done! Now you can go and access ttp://localhost:8080/tutorial-module. Try to click on the button
