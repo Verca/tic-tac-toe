@@ -15,7 +15,7 @@ In file `./moduleState.js` place this on line 4
 ```
 
 ## 2. Add a list view to a component 
-Open a file `components/ListView.jsx`. You will see a skeleton of the component. If you run the application now, all you would see at address `http://localhost:8080/tutorial-module` will be a text "Tutorial list component". Let's add a list to this! 
+Open a file `components/ListView.jsx`. You will see a skeleton of the component. If you run the application now, all you would see at address http://localhost:8080/tutorial-module will be a text "Tutorial list component". Let's add a list to this! 
 
 #### 1. Read list from  the application state
 
@@ -207,3 +207,5 @@ When we dispatch the`displayItems` action from an epic, we also add a payload to
 ```javascript
     [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
 ```
+
+We are done! Now you can go and access ttp://localhost:8080/tutorial-module. Try to click on the button
