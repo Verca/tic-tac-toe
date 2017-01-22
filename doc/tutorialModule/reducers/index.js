@@ -1,10 +1,7 @@
-import * as listReducer from './listReducer';
-import * as Actions from '../actions/actions';
 import moduleName from '../moduleName';
 
 const reducerMapping = {
-  [Actions.LOAD_ITEMS]: listReducer.loadItems,
-  [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
+  // place your code here
 };
 
 export default (state = 0, action) => {
