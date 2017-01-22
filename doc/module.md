@@ -1,7 +1,7 @@
 # Module documentation
 This section describes the entire module structure. 
 
-**It's recommended to try our [How-To module tutorial](doc/howToModuleGuide.md) first.** 
+**It's recommended to try our [How-To module tutorial](howToModuleGuide.md) first.** 
 Because it will give an overview on how parts of module works together.
 
         
