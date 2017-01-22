@@ -6,7 +6,7 @@ In this chapter, we will code a simple module together. This module will contain
 ## 0. Create a new module
 As a first step, follow this guide and create a new tutorial module in our application:
 
-- [How to create your own tutorial module](docs/howToCreateTutorial.md)
+- [How to create your own tutorial module](doc/howToCreateTutorial.md)
 
 
 ## 1. Mock list at module's state

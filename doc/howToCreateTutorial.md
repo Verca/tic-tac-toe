@@ -54,5 +54,5 @@ A module is an independent unit. You can perceive it as an independent tab in th
     
 Now you are all set! You can launch the application and navigate to the new module.
 
-**It will be empty page for now, but let's change it by following the [How-To module tutorial](docs/howToModuleGuide.md)**
+**It will be empty page for now, but let's change it by following the [How-To module tutorial](doc/howToModuleGuide.md)**
 
