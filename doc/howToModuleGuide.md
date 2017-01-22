@@ -164,3 +164,46 @@ After action went through reducers, it will enter epics. Epics are from (redux-o
 
 Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
+## 5. Display loaded items
+In `epics/loadItems.js` we define to trigger an action `Actions.displayItems` when data gets loaded. This action is hoever not defined in our module yet.
+
+### Define action displayItems
+Place this code at line 6 in file `actions/actions.js`:
+
+```javascript
+  export const DISPLAY_ITEMS = 'displayItems';
+```
+
+Now we can dispatch `Actions.displayItems`.
+
+### Save loaded items to the state
+When we dispatch the`displayItems` action from an epic, we also add a payload to it. Payload are data we attach to the action as a parameter of the function (in this case result from an Api call) - `Actions.displayItems(data)` . Now in reducer we will save this data to the application state. By saving data to the state we trigger automatic update of the component dislaying the list od data.
+
+- First, we need to create a reducer function. Add this function into the `reducers/listReducer.js` file at line 5:
+
+  ```javascript
+    export function displayItems(state, action) {
+      const loadedData = action.payload;
+    
+      return state.withMutations(mutableState => {
+        mutableState.set('loading', false);
+    
+        const items = mutableState.get('items');
+        mutableState.set('items', items.concat(fromJS(loadedData)));
+      });
+    }
+  ```
+  
+  Then ad this import to the beginning of this file:
+  
+  `import { fromJS } from 'immutable';`
+  
+  `displayItems` reducer function will take the payload (an api call result for items), merge it to the existing items of the state and cancel loading (button becomes enable again).
+  
+  **Note:** Notice that this part of reducer `state.withMutations(mutableState => {` uses `withMutations`. It's is handy function from ImmutableJS library. You can use it when you need to do more `set` to the state in one reducer action.
+
+- Now we map the 'displayList' action to the new reducer function. Add this code at line 7 (inside of the `reducerMapping` array):
+
+```javascript
+    [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
+```
