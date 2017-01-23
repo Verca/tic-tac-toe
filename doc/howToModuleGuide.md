@@ -114,11 +114,14 @@ Now open file `components/LoadButton.js`
 ## 4. Load items
 When user clics to the button, we want to trigger action which will load more items to the list.
 ####1. Register `loadItems' action
-To register action `loadItems` place this code to the line 5 in the `actions/actions.js`
+To register action `loadItems` place this code to the `actions` object at the line 5 in the `actions/actions.js`
 
 ```javascript
-  export const LOAD_ITEMS = 'loadItems';
+    LOAD_ITEMS: 'loadItems',
 ```
+
+Now anytime you need a action type, you will use `Actions.LOAD_ITEMS` and anytime you want to build a new action, you will call
+`Actions.loadItems(payload)`.
 
 ####2. Set `loading` in reducers
 After we dispatch any action it will always goes first through reducers and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
@@ -126,7 +129,7 @@ After we dispatch any action it will always goes first through reducers and then
   - open file `reducers/index.js` and import this in the beginning of the file:
   
     ```javascript
-    import * as Actions from '../actions/actions';
+    import Actions from '../actions/actions';
     import * as listReducer from './listReducer';
     ```
 
@@ -158,27 +161,27 @@ After action went through reducers, it will enter epics. Epics are from (redux-o
  - Into this file insert this code:
   ```javascript
   import { Observable } from 'rxjs';
-  import Actions, { LOAD_ITEMS } from '../actions/actions';
+  import Actions from '../actions/actions';
   import { fetchItems } from '../utils/apiCalls';
   
   export default action$ => action$
-    .ofType(LOAD_ITEMS)
+    .ofType(Actions.LOAD_ITEMS)
     .mergeMap(() => fetchItems())
     .map(response => Actions.displayItems(response.data));
   ```
-  This code will listen for Action `LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
+  This code will listen for Action `Actions.LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
   - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check Module's documentation to lear more what's useful to put into the `utils` folder, it will help you keep your code clean.
 
 Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
 ## 4. Display loaded items
-In `epics/loadItems.js` we define to trigger an action `Actions.displayItems` when data gets loaded. This action is hoever not defined in our module yet.
+In `epics/loadItems.js` we define to trigger an action `Actions.displayItems` when data gets loaded. This action is however not defined in our module yet.
 
 #### 1. Define action displayItems
-Place this code at line 6 in file `actions/actions.js`:
+Place this code to the `actions` object at the line 6 in file `actions/actions.js`:
 
 ```javascript
-  export const DISPLAY_ITEMS = 'displayItems';
+    DISPLAY_ITEMS: 'displayItems',
 ```
 
 Now we can dispatch `Actions.displayItems`.
