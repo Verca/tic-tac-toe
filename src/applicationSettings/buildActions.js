@@ -1,3 +1,4 @@
+import { fromJS } from 'immutable';
 import _ from 'lodash';
 
 export default (act, moduleName) => _.reduce(act, (map, action, key) => {
@@ -5,7 +6,7 @@ export default (act, moduleName) => _.reduce(act, (map, action, key) => {
   map[action] = (payload) => {
     return {
       type: `${moduleName}_${action}`,
-      payload,
+      payload: fromJS(payload), // make immutable
       action: key,
       moduleName,
     };

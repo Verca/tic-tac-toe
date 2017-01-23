@@ -1,5 +1,3 @@
-import { fromJS } from 'immutable';
-
 export function loadItems(state) {
   return state.set('loading', true);
 }
@@ -11,6 +9,6 @@ export function displayItems(state, action) {
     mutableState.set('loading', false);
 
     const items = mutableState.get('items');
-    mutableState.set('items', items.concat(fromJS(loadedData)));
+    mutableState.set('items', items.concat(loadedData));
   });
 }

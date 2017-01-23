@@ -199,14 +199,10 @@ When we dispatch the`displayItems` action from an epic, we also add a payload to
         mutableState.set('loading', false);
     
         const items = mutableState.get('items');
-        mutableState.set('items', items.concat(fromJS(loadedData)));
+        mutableState.set('items', items.concat(loadedData));
       });
     }
   ```
-  
-  Then ad this import to the beginning of this file:
-  
-  `import { fromJS } from 'immutable';`
   
   `displayItems` reducer function will take the payload (an api call result for items), merge it to the existing items of the state and cancel loading (button becomes enable again).
   

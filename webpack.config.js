@@ -32,7 +32,7 @@ module.exports = {
   resolve: {
     extensions: ['', '.jsx', '.js'],
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   module: {
     loaders: [
       {
