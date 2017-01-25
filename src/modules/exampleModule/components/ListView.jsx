@@ -5,7 +5,6 @@ import Immutable from 'immutable';
 import classNames from 'classnames';
 import moduleName from '../moduleName';
 
-// import Actions from '../actions/actionsTest';
 import styles from '../styles/listView.less';
 import LoadButton from './LoadButton';
 

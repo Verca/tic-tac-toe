@@ -69,20 +69,20 @@ export default {
 ```
 
 ## Actions directory
-        actions.js
 Actions contains only one file `actions.js`. It's a place to define actions related to this module.
 
 ```javascript
 ... 
+const actions = {
+  LOAD_ITEMS: 'loadItems',
+  DISPLAY_ITEMS: 'displayItems',
+};
 
-export const LOAD_ITEMS = 'loadItems';
-export const DISPLAY_ITEMS = 'displayItems';
-
-export default transform(ActionTest, moduleName);
+export default transform(actions, moduleName);
 ```
 
-For example `export const LOAD_ITEMS = 'loadItems';` 
-- If we want to import action type (useful in index reducer) we import `LOAD_ITEMS` from `actions.js` file. 
+For example `eLOAD_ITEMS: 'loadItems',` 
+- If we want to import action type (useful in index reducer) we import `Action.LOAD_ITEMS` from `actions.js` file. 
 - To call this action (in components or epics):
     - import `import Actions from '../actions/actions';` in the beginning of the file
     - then you can simply call `Actions.loadItems()`
@@ -139,7 +139,6 @@ export const GET_ITEM = 'https://jsonplaceholder.typicode.com/user';
 
 This project uses [redux-observable](https://github.com/redux-observable/redux-observable) middleware.
 It listens for action and triggers a code when this action is dispatched.
-Epics will **listen only for actions defined within the same module**.
 
 #### How to create an epic:
 1. Create a file with epic in the epic directory. See examples below.
@@ -154,16 +153,16 @@ Epics will **listen only for actions defined within the same module**.
 #### Api call example:
 ```javascript
 import { push } from 'react-router-redux';
-import Actions, { LOAD_ITEMS } from '../actions/actions';
+import Actions from '../actions/actions';
 
 export default action$ => action$
-  .ofType(LOAD_ITEMS)
+  .ofType(Actions.LOAD_ITEMS)
   .mergeMap(() => fetchItems()) 
   .map(response => Actions.displayItems(response.data))
   .catch(failedAction => Observable.of(Actions.processError())); //  error handle action
 ```
 Description: 
-- `ofType(LOAD_ITEMS)` - listen only for LOAD_ITEMS action type. 
+- `ofType(Actions.LOAD_ITEMS)` - listen only for LOAD_ITEMS action type. 
 - `.mergeMap(() => fetchItems())` - trigger API call. 
 - `.map(response => Actions.displayItems(response.data))`  - call displayItems action with fetched data
 - `.catch(failedAction => Observable.of(Actions.processError()))` -  error handle action
@@ -173,16 +172,16 @@ Description:
 
 import { Observable } from 'rxjs';
 import { push } from 'react-router-redux';
-import Actions, { RESET_GAME } from '../actions/actions';
+import Actions from '../actions/actions';
 
 export default (action$, store) => action$
-  .ofType(RESET_GAME)
+  .ofType(Actions.RESET_GAME)
   .concatMap(action => {
-    return Observable.of(resetBoard(), push('/tic-tac-board'));
+    return Observable.of(Actions.resetBoard(), push('/tic-tac-board'));
   });
 ```
 Description: This epic triggers on action type RESET_GAME defined in the same module.
-Then it will trigger `resetBoard()` action and then action `push('/tic-tac-board')`.
+Then it will trigger `Actions.resetBoard()` action and then action `push('/tic-tac-board')`.
 
 **Note:** `push('/tic-tac-board')` is a [react-redux-router](https://github.com/reactjs/react-router-redux) action. It expects destination route as an argument.
 Import for this action differs from other actions. It's always simply 
@@ -196,11 +195,6 @@ All files with reducer functions should be placed in this directory.
 State in this project is stored as 
 [ImmutableJs](https://facebook.github.io/immutable-js/) structure. To access props you need to call `get` or `getIn`
 and to set prop you need to call `set` or `setIn` see the [documentation](https://facebook.github.io/immutable-js/).
-
-
-**Reducers will read only actions defined in the same module.**
-It's because of the condition in `reducers/index.js` - `if (reducerMapping[action.type] && action.moduleName === moduleName) {... `.
-We strongly recommend **not to change it!** Otherwise anybody in the application could accidentally name action the same way like you and trigger your's module reducer.
 
 #### How to create a reducer:
 0. If there is no semantically good reducer file, create one. For example `reducers/listReducer.js`.
