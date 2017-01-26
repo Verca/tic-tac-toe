@@ -8,7 +8,7 @@
 - [redux-observable examples](doc/reduxObservableExamples.md) - It contains a list of most common use cases of epics. It should help you create your epics when you are developing your app.
 
 
-## Couple of thing you should know
+## Couple of things you should know
 - It uses [ImmutableJS](https://facebook.github.io/immutable-js/) for representing the application state (see [module documentation](doc/module.md#reducers-directory)). This comes with useful things like:
   - Nobody can change your state out of nowhere. Only in reducers
   - It will make react render faster! ( anytime you place this [module.md#shouldcomponentupdate](doc/module.md#shouldcomponentupdate) to your component). 
