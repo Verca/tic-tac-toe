@@ -169,7 +169,6 @@ Description:
 
 #### Chain action example:
 ```javascript
-
 import { Observable } from 'rxjs';
 import { push } from 'react-router-redux';
 import Actions from '../actions/actions';
@@ -180,8 +179,8 @@ export default (action$, store) => action$
     return Observable.of(Actions.resetBoard(), push('/tic-tac-board'));
   });
 ```
-Description: This epic triggers on action type RESET_GAME defined in the same module.
-Then it will trigger `Actions.resetBoard()` action and then action `push('/tic-tac-board')`.
+Description: This epic triggers on action type Actions.RESET_GAME defined in the imported actions file.
+Then it will trigger `Actions.resetBoard()` action and then action `push('/tic-tac-board')` (redirects to the other route).
 
 **Note:** `push('/tic-tac-board')` is a [react-redux-router](https://github.com/reactjs/react-router-redux) action. It expects destination route as an argument.
 Import for this action differs from other actions. It's always simply 
