@@ -37,6 +37,7 @@ Description:
  - listens for action
  - then trigger api call 
  - and then it finishes (we don't want to fire another action).
+
 ## Action chaining
 ```javascript
 import { Observable } from 'rxjs';
