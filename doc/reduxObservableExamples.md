@@ -1,4 +1,4 @@
-## Api call and then trigger another action
+## Make an Api call and then trigger another action
 ```javascript
 import Actions from '../actions/actions';
 import { fetchItems } from '../utils/apiCalls';
@@ -21,7 +21,7 @@ simply do
     - if the Api call succeed, action `Actions.processItems(response.data)` will be called
     - in case the request failed, we catch it in `.catch` block and call `Actions.processAjaxErrors(failedAction)` action
    
-## Api call and then no action
+## Make an Api call and then no action
 ```javascript
 import Actions from '../actions/actions';
 import { saveTodo } from '../utils/apiCalls';
