@@ -17,34 +17,44 @@ First, we mock data for our list.
 In file `./moduleState.js` place this on line 4 
 
 ```javascript
-  items: new List(
-    [
-      { id: '007', name: 'one' },
-      { id: '100', name: 'two' },
-    ],
-  ),
+ items: new List(
+   fromJS([
+     { id: '007', name: 'one' },
+     { id: '100', name: 'two' },
+   ]),
+ ),
+```
+
+and also extend import at the beggining of the page:
+
+```javascript
+import { Record, fromJS, List } from 'immutable';
 ```
 
 Module's state is saved as an [ImmtableJS](https://facebook.github.io/immutable-js/) Record. Every top property of module's state has to be defined in it's `moduleState.js` file (because Record works like a data model here).
 
-Inside of the state, we can store only primitive types or ImmutableJS structures. `List` is one of them. Check [ImmtableJS documentation](https://facebook.github.io/immutable-js/) for more information.
+Inside of the state, we can store only primitive types or ImmutableJS structures. `List` is one of them. In case you want an empty list, you would write `new List`. Check [ImmtableJS documentation](https://facebook.github.io/immutable-js/) for more information.
 
 ## 2. Add a list view to a component 
-Open a file `components/ListView.jsx`. You will see a skeleton of the component. If you run the application now, all you would see at address http://localhost:8080/tutorial-module will be a text "Tutorial list component". Let's add a list to this! 
+Open a file `components/ListView.jsx`. You will see a skeleton of the component. If you run the application now, all you will see at address http://localhost:8080/tutorial-module will be a text "Tutorial list component". Let's add a list to this! 
 
 #### 1. Read list from  the application state
 
 To access `items` from component we need to define them in the `connect` function. 
-- on line 40 place this (into the returned object):
+- on line 42 place this (into the returned object):
 
 ```javascript
   items: moduleState.get('items'),
 ```
 
-`connect` function only defines which parts of the state can our component read. But to be able to access them we 
-need to also define them as props of our component:
-
-- To the line 9 (to the `propTypes` object) place this:
+`connect` function only defines which parts of the state can our component read. But to be able to access them we also 
+need to define them as props of our component:
+- Add this import in the beginning of the file
+  ```javascript
+  import Immutable from 'immutable';
+  ```
+  
+- To the line 13 (to the `propTypes` object) place this:
 
   ```javascript
     items: React.PropTypes.instanceOf(Immutable.List).isRequired,
@@ -53,7 +63,7 @@ need to also define them as props of our component:
 Perfect! Now we can simply access it as `this.props.items` anywhere in our component. 
 
 #### 2. Display the list
-To display the list add this function to the line 21:
+To display the list add this function to the line 25:
   ```javascript
     renderList() {
       return (
@@ -65,7 +75,7 @@ To display the list add this function to the line 21:
       );
     }
   ```
-Then add this to line 30 (inside of `<div className={classNames('col-xs-6', styles.listView)}>`):
+Then add this to line 40 (inside of `<div className={classNames('col-xs-6', styles.listView)}>`):
 
   ```javascript
   {this.renderList()}
