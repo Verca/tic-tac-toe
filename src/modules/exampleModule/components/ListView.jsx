@@ -11,7 +11,7 @@ import LoadButton from './LoadButton';
 class ListView extends React.Component {
   static propTypes = {
     // dispatch: React.PropTypes.func,
-    items: React.PropTypes.instanceOf(Immutable.List).isRequired,
+    items: React.PropTypes.instanceOf(Immutable.List),
   }
 
   constructor(props) {
@@ -26,7 +26,7 @@ class ListView extends React.Component {
   renderList() {
     return (
       <ul className="list-group">
-        {this.props.items.map((item, index) => {
+        {this.props.items && this.props.items.map((item, index) => {
           return (<li className="list-group-item" key={index}>{item.get('name')}</li>);
         })}
       </ul>

@@ -1,3 +1,7 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 
-export default Immutable.fromJS({});
+const ModuleState = Record({
+  // add state props here
+});
+
+export default new ModuleState();

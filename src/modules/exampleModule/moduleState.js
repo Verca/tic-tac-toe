@@ -1,6 +1,8 @@
-import Immutable from 'immutable';
+import { Record } from 'immutable';
 
-export default Immutable.fromJS({
-  items: [],
+const ModuleState = Record({
+  items: null, // List(),
   loading: false,
 });
+
+export default new ModuleState();

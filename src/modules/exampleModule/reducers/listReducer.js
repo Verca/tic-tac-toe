@@ -9,6 +9,7 @@ export function displayItems(state, action) {
     mutableState.set('loading', false);
 
     const items = mutableState.get('items');
-    mutableState.set('items', items.concat(loadedData));
+    const extendedItems = items ? items.concat(loadedData) : loadedData;
+    mutableState.set('items', extendedItems);
   });
 }
