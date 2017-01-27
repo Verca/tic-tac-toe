@@ -1,4 +1,5 @@
 #  React/Redux boilerplate
+This boilerplate is designed mainly for larger sites. The biggest advantage is robustness (protection against accidental overwrites) and code splitting (helps you keep files in reasonable length - no more hundreds of line caused by your reducer switch!).
 
 ## Developer documentation
 - [Install/Run/Test application](doc/howToRun.md)
