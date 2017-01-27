@@ -89,15 +89,17 @@ Now let's add a button which will trigger loading of more items into our list.
 When we click the button, we want to disable it until loading of new items is not done.
 
 ####1. Add component `LoadButton` to the `ListView`
+
 - import `LoadButton`. Place this into the file:
   ```
   import LoadButton from './LoadButton';
   ```
   
- - at 41 make a new line and add this (above the `{this.renderList()}`):
-   ```javascript
-   <LoadButton />
-   ```
+- at 41 make a new line and add this (above the `{this.renderList()}`):
+
+  ```javascript
+  <LoadButton />
+  ```
    
 ####2. Add loading variable to the state
 In file `./moduleState.js` place this on line 10 inside of module's state (below the `items`) 
