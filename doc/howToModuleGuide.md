@@ -124,7 +124,7 @@ Now open file `components/LoadButton.js`
     loading: React.PropTypes.bool,
   ```
 #### 4. Add button element to the component
-- In `components/LoadButton.js` place this code to the render function at the line 34:
+- In `components/LoadButton.js` place this code to the render function at line 34:
 
   ```html
     <button className={buttonStyles} disabled={this.props.loading} onClick={this.loadItems}>
@@ -135,7 +135,7 @@ Now open file `components/LoadButton.js`
   - `onClick={this.loadItems}` specifies a function triggered when user clicks on the button.
   
   
-- Now we add function, which will be triggered, when you click the button. Place this code at the line 20:
+- Now we add function, which will be triggered, when you click the button. Place this code at line 20:
 
   ```javascript
     this.loadItems = () => {
@@ -147,7 +147,7 @@ Now open file `components/LoadButton.js`
 ## 4. Load items
 When user clics to the button, we want to trigger action which will load more items to the list.
 ####1. Register `loadItems' action
-To register action `loadItems` place this code to the `actions` object at the line 5 in the `actions/actions.js`
+To register action `loadItems` place this code to the `actions` object at line 5 in the `actions/actions.js`
 
 ```javascript
     LOAD_ITEMS: 'loadItems',
@@ -166,7 +166,7 @@ After we dispatch any action it will always goes first through `reducers` and th
     import * as listReducer from './listReducer';
     ```
 
-  - add this code at the line 5 (inside of the `reducerMapping` array):
+  - add this code at line 5 (inside of the `reducerMapping` array):
   
      ```javascript
       [Actions.LOAD_ITEMS]: listReducer.loadItems,
@@ -215,7 +215,7 @@ Epics could be used for handling asynchronous code like API calls or action chai
   import loadItems from './loadItems';
   ```
  
- - Then add this inside of `export default` array at the line 4:
+ - Then add this inside of `export default` array at line 4:
  
  ```
    loadItems,
@@ -227,7 +227,7 @@ Perfect! Now when we click our button, it will trigger an api call to load more 
 In `epics/loadItems.js` we defined trigger an action `Actions.displayItems` when data gets loaded. This action is however not defined in our module yet.
 
 #### 1. Define action displayItems
-Place this code to the `actions` object at the line 6 in file `actions/actions.js`:
+Place this code to the `actions` object at line 6 in file `actions/actions.js`:
 
 ```javascript
     DISPLAY_ITEMS: 'displayItems',
