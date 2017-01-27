@@ -2,7 +2,9 @@
 import React from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
+import moduleName from '../moduleName';
 import styles from '../styles/listView.less';
 
 class ListView extends React.Component {
