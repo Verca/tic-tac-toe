@@ -36,16 +36,24 @@ const moduleName = 'exampleComponent';
 In the `moduleRegister.js,` all important redux index files and module settings files are linked together for this module (module state, epics, reducers, and module name). You should not change this file unless you know what you are doing. 
 
 ### moduleState.js
-In the `moduleState.js` you specify the state of your module. 
+In the `moduleState.js` you specify the state of your module.
+##### State is stored as ImmutableJS
+ - Module's state is saved as an [ImmtableJS](https://facebook.github.io/immutable-js/) Record. Every top property of module's state has to be defined in its `moduleState.js` file (because Record works like a data model here).
+ - Inside of the state, we can store only primitive types or ImmutableJS structures. `List` for example.
 
- - This part of the state will be accessible only from reducers of this module (other module's reducers can't see this part of application state)
+##### Module's state is independent
+ - This part of the state will be accessible only from reducers of this module (other module's reducers can't see this part of application state) 
  - However, every component can read the whole app state. If you are interested in module's part of a component, then you need to access the moduleName property of it. (for more info see components documentation of the module)
  - Also, every epic can read the whole app state (none of the epics should be writing to the state!). If you are interested in module's part of a component, then you need to access the moduleName property of it. See module's epic documentation.
 
 ```javascript
-export default Immutable.fromJS({
-  // here you'll put your module's state
+import { Record } from 'immutable';
+
+const ModuleState = Record({
+  // add state props here
 });
+
+export default new ModuleState();
 ```
 ### routeIndex.js
 In the `routeIndex.js` you specify routes of your module. 
