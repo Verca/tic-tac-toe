@@ -2,7 +2,7 @@
 
 In this chapter, we will code a simple module together. This module will contain a button **Load items** and a list of items. Anytime we click on the button, new items will be loaded and concatenated to the displayed list.
 
-<kbd>![tutorial](../doc/tutorial.png)</kbd>
+<kbd>![tutorial](tutorial.png)</kbd>
 
 
 ## 0. Create a new module
