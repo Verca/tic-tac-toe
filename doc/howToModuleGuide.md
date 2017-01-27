@@ -189,7 +189,7 @@ After action went through reducers, it will enter epics. Epics are from [redux-o
 
 Epics could be used for handling asynchronous code like API calls or action chaining (for more information read [redux-observable examples](reduxObservableExamples.md) or [epic section](module.md#epics-directory) in module documentation). 
 
-- To load a data let's create an epic
+- To load the data let's create an epic
  - First, create a file `epics/loadItems.js`
  - Into this file insert this code:
   ```javascript
@@ -203,7 +203,7 @@ Epics could be used for handling asynchronous code like API calls or action chai
     .map(response => Actions.displayItems(response.data));
   ```
   This code will listen for Action `Actions.LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
-  - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check Module's documentation to lear more what's useful to put into the `utils` folder, it will help you keep your code clean.
+  - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check [module's documentation](module.md#utils-directory) to learn more on what's useful to put into the `utils` folder, it will help you keep your code clean.)
 
 Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
