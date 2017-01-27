@@ -200,8 +200,13 @@ Import for this action differs from other actions. It's always simply
 All files with reducer functions should be placed in this directory. 
 
 State in this project is stored as 
-[ImmutableJs](https://facebook.github.io/immutable-js/) structure. To access props you need to call `get` or `getIn`
-and to set prop you need to call `set` or `setIn` see the [documentation](https://facebook.github.io/immutable-js/).
+[ImmutableJs](https://facebook.github.io/immutable-js/) Record structure. To access props you need to call `get` or `getIn`
+and to set prop you need to call `set` or `setIn` see the [documentation](https://facebook.github.io/immutable-js/). 
+
+Important notes: 
+- Every top property of module's state has to be defined in its `moduleState.js` file (because Record works like a data model here).
+- Inside of the state, we can store only primitive types or ImmutableJS structures. `List` for example. This will help application to render faster.
+ 
 
 #### How to create a reducer:
 0. If there is no semantically good reducer file, create one. For example `reducers/listReducer.js`.
