@@ -1,5 +1,3 @@
-// import moduleName from '../moduleName';
-
 const reducerMapping = {
   // place your code here
 };

@@ -30,7 +30,7 @@ class LoadButton extends React.Component {
       styles.loadButton,
     );
     return (<div>
-      { /* place your code here */ }
+
     </div>);
   }
 }
