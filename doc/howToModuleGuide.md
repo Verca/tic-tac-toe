@@ -155,7 +155,7 @@ Now anytime you need a action type, you will use `Actions.LOAD_ITEMS` and anytim
 `Actions.loadItems(payload)`.
 
 ####2. Set `loading` in reducers
-After we dispatch any action it will always goes first through reducers and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
+After we dispatch any action it will always goes first through `reducers` and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
 - map action LOAD_ITEMS to the right reducer
   - open file `reducers/index.js` and import this in the beginning of the file:
   
@@ -164,13 +164,13 @@ After we dispatch any action it will always goes first through reducers and then
     import * as listReducer from './listReducer';
     ```
 
-  - add this code at the line 6 (inside of the `reducerMapping` array):
+  - add this code at the line 5 (inside of the `reducerMapping` array):
   
      ```javascript
       [Actions.LOAD_ITEMS]: listReducer.loadItems,
      ```
      
-- We mapped action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
+- By adding those lines, we mapped the action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
   - create file `reducers/listReducer.js`
   - into this file place this code:
   
@@ -178,20 +178,22 @@ After we dispatch any action it will always goes first through reducers and then
       export function loadItems(state) {
         return state.set('loading', true);
       }
+      
       ```
   
 `state.set('loading', true)` is assigning into immutablejs Map:
 
-Application state is kept as [immutablejs](https://facebook.github.io/immutable-js/) structure. This improves rendering performance a lot. Anything you save to the state should be immutable (or primitive type). For more info you can read official documentation or for example this post [http://thomastuts.com/blog/immutable-js-101-maps-lists.html](http://thomastuts.com/blog/immutable-js-101-maps-lists.html)
+Application state is kept as [ImmutableJS](https://facebook.github.io/immutable-js/) structure. This improves rendering performance a lot. Anything you save to the state should be immutable (or primitive type). For more info you can read official [documentation](https://facebook.github.io/immutable-js/) or for example this post [http://thomastuts.com/blog/immutable-js-101-maps-lists.html](http://thomastuts.com/blog/immutable-js-101-maps-lists.html)
 
 ####3. Trigger Api call for load more items
-After action went through reducers, it will enter epics. Epics are from (redux-observables)[https://github.com/redux-observable/redux-observable] middleware (check original documentation and also our live examples in this documentation). Epics could be used for handling asynchronous code like API calls or action chaining (for more information read documentation for Module - epic section). 
+After action went through reducers, it will enter epics. Epics are from [redux-observables](https://github.com/redux-observable/redux-observable) middleware. 
 
-- To load a data let's create an epic
+Epics could be used for handling asynchronous code like API calls or action chaining (for more information read [redux-observable examples](reduxObservableExamples.md) or [epic section](module.md#epics-directory) in the module documentation). 
+
+- To load the data let's create an epic
  - First, create a file `epics/loadItems.js`
  - Into this file insert this code:
   ```javascript
-  import { Observable } from 'rxjs';
   import Actions from '../actions/actions';
   import { fetchItems } from '../utils/apiCalls';
   
@@ -199,14 +201,28 @@ After action went through reducers, it will enter epics. Epics are from (redux-o
     .ofType(Actions.LOAD_ITEMS)
     .mergeMap(() => fetchItems())
     .map(response => Actions.displayItems(response.data));
+
   ```
   This code will listen for Action `Actions.LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
-  - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check Module's documentation to lear more what's useful to put into the `utils` folder, it will help you keep your code clean.
+  - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check [utils section](module.md#utils-directory) in the module documentation to learn more on what's useful to put into the `utils` folder, it will help you keep your code clean.)
 
-Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
+- Every epic we create must be registered in the file `epics/index.js`. 
+ - First, import your epic file.
+ 
+  ```javascript
+  import loadItems from './loadItems';
+  ```
+ 
+ - Then add this inside of `export default` array at the line 4:
+ 
+ ```
+   loadItems,
+ ```
+
+Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in the browser). You can't see data in the view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
 ## 4. Display loaded items
-In `epics/loadItems.js` we define to trigger an action `Actions.displayItems` when data gets loaded. This action is however not defined in our module yet.
+In `epics/loadItems.js` we defined trigger an action `Actions.displayItems` when data gets loaded. This action is however not defined in our module yet.
 
 #### 1. Define action displayItems
 Place this code to the `actions` object at the line 6 in file `actions/actions.js`:
@@ -218,28 +234,29 @@ Place this code to the `actions` object at the line 6 in file `actions/actions.j
 Now we can dispatch `Actions.displayItems`.
 
 #### 2. Save loaded items to the state
-When we dispatch the`displayItems` action from an epic, we also add a payload to it. Payload are data we attach to the action as a parameter of the function (in this case result from an Api call) - `Actions.displayItems(data)` . Now in reducer we will save this data to the application state. By saving data to the state we trigger automatic update of the component dislaying the list od data.
+When we dispatch the`displayItems` action from an epic, we also add a payload to it. Payload are data which we attach to the action as a parameter (in this case it's result from an Api call) - `Actions.displayItems(data)` . Now in reducer we will save this data to the application state. By saving data to the state we trigger automatic update of the component dislaying the list od data.
 
 - First, we need to create a reducer function. Add this function into the `reducers/listReducer.js` file at line 5:
 
   ```javascript
-    export function displayItems(state, action) {
-      const loadedData = action.payload;
-    
-      return state.withMutations(mutableState => {
-        mutableState.set('loading', false);
-    
-        const items = mutableState.get('items');
-        mutableState.set('items', items.concat(loadedData));
-      });
-    }
+  export function displayItems(state, action) {
+    const loadedData = action.payload;
+  
+    return state.withMutations(mutableState => {
+      mutableState.set('loading', false);
+  
+      const items = mutableState.get('items');
+      const extendedItems = items ? items.concat(loadedData) : loadedData;
+      mutableState.set('items', extendedItems);
+    });
+  }
   ```
   
   `displayItems` reducer function will take the payload (an api call result for items), merge it to the existing items of the state and cancel loading (button becomes enable again).
   
-  **Note:** Notice that this part of reducer `state.withMutations(mutableState => {` uses `withMutations`. It's is handy function from ImmutableJS library. You can use it when you need to do more `set` to the state in one reducer action.
+  **Note:** Notice that this part of reducer `state.withMutations(mutableState => {` uses `withMutations`. It's handy function from [ImmutableJS](https://facebook.github.io/immutable-js/) library. You can use it when you need to do more `set` to the state in one reducer action.
 
-- Now we map the 'displayList' action to the new reducer function. Add this code at line 7 (inside of the `reducerMapping` array):
+- Now we map the 'displayList' action to the new reducer function. Add this code at line 6 in the `reducers/index.js` file (inside of the `reducerMapping` array):
 
     ```javascript
         [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
