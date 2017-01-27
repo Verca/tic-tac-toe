@@ -10,7 +10,9 @@ As a first step, follow this guide and create a new tutorial module in our appli
 
 
 ## 1. Mock list at module's state
-First, we mock data for our list. Note that any data should be always placed in our module's state. (We will clear this mock once we set-up loading of data.)
+First, we mock data for our list. (We will clear this mock once we set-up loading of data.)
+
+ Note that any data should be always placed in our module's state.
 
 In file `./moduleState.js` place this on line 4 
 
@@ -22,6 +24,10 @@ In file `./moduleState.js` place this on line 4
     ],
   ),
 ```
+
+Module's state is saved as an [ImmtableJS](https://facebook.github.io/immutable-js/) Record. Every top property of module's state has to be defined in it's `moduleState.js` file (because Record works like a data model here).
+
+Inside of the state, we can store only primitive types or ImmutableJS structures. `List` is one of them. Check [ImmtableJS documentation](https://facebook.github.io/immutable-js/) for more information.
 
 ## 2. Add a list view to a component 
 Open a file `components/ListView.jsx`. You will see a skeleton of the component. If you run the application now, all you would see at address http://localhost:8080/tutorial-module will be a text "Tutorial list component". Let's add a list to this! 
