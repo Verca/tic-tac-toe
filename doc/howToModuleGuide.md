@@ -2,6 +2,8 @@
 
 In this chapter, we will code a simple module together. This module will contain a button **Load items** and a list of items. Anytime we click on the button, new items will be loaded and concatenated to the displayed list.
 
+![tutorial](../doc/tutorial.png)
+
 
 ## 0. Create a new module
 As a first step, follow this guide and create a new tutorial module in our application:
