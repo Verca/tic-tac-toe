@@ -187,7 +187,7 @@ Application state is kept as [immutablejs](https://facebook.github.io/immutable-
 ####3. Trigger Api call for load more items
 After action went through reducers, it will enter epics. Epics are from [redux-observables](https://github.com/redux-observable/redux-observable) middleware. 
 
-Epics could be used for handling asynchronous code like API calls or action chaining (for more information read [redux-observable examples](reduxObservableExamples.md) or [epic section](module.md#epics-directory) in module documentation). 
+Epics could be used for handling asynchronous code like API calls or action chaining (for more information read [redux-observable examples](reduxObservableExamples.md) or [epic section](module.md#epics-directory) in the module documentation). 
 
 - To load the data let's create an epic
  - First, create a file `epics/loadItems.js`
@@ -205,7 +205,20 @@ Epics could be used for handling asynchronous code like API calls or action chai
   This code will listen for Action `Actions.LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
   - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check [utils section](module.md#utils-directory) in the module documentation to learn more on what's useful to put into the `utils` folder, it will help you keep your code clean.)
 
-Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
+- Every epic we create must be registered in the file `epics/index.js`. 
+ - First, import your epic file.
+ 
+  ```javascript
+  import loadItems from './loadItems';
+  ```
+ 
+ - Then add this inside of `export default` array at the line 3:
+ 
+ ```
+   loadItems,
+ ```
+
+Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in the browser). You can't see data in the view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
 ## 4. Display loaded items
 In `epics/loadItems.js` we define to trigger an action `Actions.displayItems` when data gets loaded. This action is however not defined in our module yet.
