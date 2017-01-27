@@ -236,7 +236,7 @@ Place this code to the `actions` object at line 6 in file `actions/actions.js`:
 Now we can dispatch `Actions.displayItems`.
 
 #### 2. Save loaded items to the state
-When we dispatch the`displayItems` action from an epic, we also add a payload to it. Payload are data which we attach to the action as a parameter (in this case it's result from an Api call) - `Actions.displayItems(data)` . Now in reducer we will save this data to the application state. By saving data to the state we trigger automatic update of the component dislaying the list od data.
+When we dispatch the`displayItems` action from an epic, we also add a payload to it. Payload is a data which we attach to the action as a parameter (in this case it results from an Api call) - `Actions.displayItems(data)` . Now in reducer, we will save this data to the application state. By saving data to the state we trigger an automatic update of the component displaying the list od data.
 
 - First, we need to create a reducer function. Add this function into the `reducers/listReducer.js` file at line 5:
 
