@@ -11,13 +11,13 @@
 ## Highlights of this boilerplate
 ### Rendering speed
 - It uses [ImmutableJS](https://facebook.github.io/immutable-js/) for representing the application state (see [module documentation](doc/module.md#reducers-directory)). This comes with useful things like:
-  - Nobody can change your state out of nowhere. Only in reducers
-  - It will make react render faster! ( anytime you place this [module.md#shouldcomponentupdate](doc/module.md#shouldcomponentupdate) to your component). 
+  - **Nobody can change your state out of nowhere**. Only in reducers
+  - It will make react **render faster!** ( anytime you place this [module.md#shouldcomponentupdate](doc/module.md#shouldcomponentupdate) to your component). 
     - because it will compare references instead of doing deep equals on structures
 
 ### Independence
-It's robust againts accidental owerwrites and unexpected name collisions
-  - All actions are name-spaced. This will avoid collision when someone accidentally names action in the same way.
+It's **robust againts accidental owerwrites** and unexpected name collisions
+  - All **actions are name-spaced**. This will avoid collision when someone accidentally names action in the same way.
     - Reducers example: When two people in different modules name their action "LOAD_LIST", your reducers will ignore actions from other module (unless you specificaly import them from action file of that module)
     - Epics have the same principal as reducers - you will listen only to imported actions.
   - Every reducer has it's own part of the application state (nobody will rewrite your part of state unless they do so from your module).
