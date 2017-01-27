@@ -33,7 +33,7 @@ and also extend import at the beggining of the page:
 import { Record, fromJS, List } from 'immutable';
 ```
 
-Module's state is saved as an [ImmtableJS](https://facebook.github.io/immutable-js/) Record. Every top property of module's state has to be defined in it's `moduleState.js` file (because Record works like a data model here).
+Module's state is saved as an [ImmtableJS](https://facebook.github.io/immutable-js/) Record. Every top property of module's state has to be defined in its `moduleState.js` file (because Record works like a data model here).
 
 Inside of the state, we can store only primitive types or ImmutableJS structures. `List` is one of them. In case you want an empty list, you would write `new List`. Check [ImmtableJS documentation](https://facebook.github.io/immutable-js/) for more information.
 
