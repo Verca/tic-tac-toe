@@ -164,7 +164,7 @@ After we dispatch any action it will always goes first through `reducers` and th
     import * as listReducer from './listReducer';
     ```
 
-  - add this code at the line 4 (inside of the `reducerMapping` array):
+  - add this code at the line 5 (inside of the `reducerMapping` array):
   
      ```javascript
       [Actions.LOAD_ITEMS]: listReducer.loadItems,
@@ -178,6 +178,7 @@ After we dispatch any action it will always goes first through `reducers` and th
       export function loadItems(state) {
         return state.set('loading', true);
       }
+      
       ```
   
 `state.set('loading', true)` is assigning into immutablejs Map:
@@ -193,7 +194,6 @@ Epics could be used for handling asynchronous code like API calls or action chai
  - First, create a file `epics/loadItems.js`
  - Into this file insert this code:
   ```javascript
-  import { Observable } from 'rxjs';
   import Actions from '../actions/actions';
   import { fetchItems } from '../utils/apiCalls';
   
@@ -201,6 +201,7 @@ Epics could be used for handling asynchronous code like API calls or action chai
     .ofType(Actions.LOAD_ITEMS)
     .mergeMap(() => fetchItems())
     .map(response => Actions.displayItems(response.data));
+
   ```
   This code will listen for Action `Actions.LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
   - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check [utils section](module.md#utils-directory) in the module documentation to learn more on what's useful to put into the `utils` folder, it will help you keep your code clean.)
@@ -212,7 +213,7 @@ Epics could be used for handling asynchronous code like API calls or action chai
   import loadItems from './loadItems';
   ```
  
- - Then add this inside of `export default` array at the line 3:
+ - Then add this inside of `export default` array at the line 4:
  
  ```
    loadItems,
