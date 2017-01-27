@@ -155,7 +155,7 @@ Now anytime you need a action type, you will use `Actions.LOAD_ITEMS` and anytim
 `Actions.loadItems(payload)`.
 
 ####2. Set `loading` in reducers
-After we dispatch any action it will always goes first through reducers and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
+After we dispatch any action it will always goes first through `reducers` and then it will enter `epics`. We will use the fact and first set up `loading` to `true` in reducer before we start loading data in epic.
 - map action LOAD_ITEMS to the right reducer
   - open file `reducers/index.js` and import this in the beginning of the file:
   
@@ -164,13 +164,13 @@ After we dispatch any action it will always goes first through reducers and then
     import * as listReducer from './listReducer';
     ```
 
-  - add this code at the line 6 (inside of the `reducerMapping` array):
+  - add this code at the line 4 (inside of the `reducerMapping` array):
   
      ```javascript
       [Actions.LOAD_ITEMS]: listReducer.loadItems,
      ```
      
-- We mapped action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
+- By adding those lines, we mapped the action `Actions.LOAD_ITEMS` to the reducer function `loadItems` in the file `reducers/listReducer.js`. Since there is not such a file (with the function) yet, let's create it.
   - create file `reducers/listReducer.js`
   - into this file place this code:
   
@@ -182,10 +182,12 @@ After we dispatch any action it will always goes first through reducers and then
   
 `state.set('loading', true)` is assigning into immutablejs Map:
 
-Application state is kept as [immutablejs](https://facebook.github.io/immutable-js/) structure. This improves rendering performance a lot. Anything you save to the state should be immutable (or primitive type). For more info you can read official documentation or for example this post [http://thomastuts.com/blog/immutable-js-101-maps-lists.html](http://thomastuts.com/blog/immutable-js-101-maps-lists.html)
+Application state is kept as [immutablejs](https://facebook.github.io/immutable-js/) structure. This improves rendering performance a lot. Anything you save to the state should be immutable (or primitive type). For more info you can read official [documentation](https://facebook.github.io/immutable-js/) or for example this post [http://thomastuts.com/blog/immutable-js-101-maps-lists.html](http://thomastuts.com/blog/immutable-js-101-maps-lists.html)
 
 ####3. Trigger Api call for load more items
-After action went through reducers, it will enter epics. Epics are from (redux-observables)[https://github.com/redux-observable/redux-observable] middleware (check original documentation and also our live examples in this documentation). Epics could be used for handling asynchronous code like API calls or action chaining (for more information read documentation for Module - epic section). 
+After action went through reducers, it will enter epics. Epics are from [redux-observables](https://github.com/redux-observable/redux-observable) middleware (). 
+
+Epics could be used for handling asynchronous code like API calls or action chaining (for more information read [redux-observable examples](reduxObservableExamples.md) or Module - epic section here [module.md#epics-directory](module.md#epics-directory)). 
 
 - To load a data let's create an epic
  - First, create a file `epics/loadItems.js`
