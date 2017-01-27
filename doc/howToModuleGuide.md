@@ -15,10 +15,12 @@ First, we mock data for our list. Note that any data should be always placed in 
 In file `./moduleState.js` place this on line 4 
 
 ```javascript
-  items: [
-    { id: '007', name: 'one' },
-    { id: '100', name: 'two' },
-  ],
+  items: new List(
+    [
+      { id: '007', name: 'one' },
+      { id: '100', name: 'two' },
+    ],
+  ),
 ```
 
 ## 2. Add a list view to a component 
