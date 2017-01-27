@@ -10,7 +10,7 @@ As a first step, follow this guide and create a new tutorial module in our appli
 
 
 ## 1. Mock list at module's state
-First, we mock data for our list. (We will clear this mock once we set-up loading of data.)
+First, we mock data for our list.
 
  Note that any data should be always placed in our module's state.
 
