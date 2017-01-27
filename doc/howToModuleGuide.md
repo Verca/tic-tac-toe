@@ -262,4 +262,4 @@ When we dispatch the`displayItems` action from an epic, we also add a payload to
         [Actions.DISPLAY_ITEMS]: listReducer.displayItems,
     ```
 
-We are done! Now you can go and access ttp://localhost:8080/tutorial-module. Try to click on the button
+We are done! Now you can go and access http://localhost:8080/tutorial-module. Try to click on the button
