@@ -2,7 +2,7 @@
 
 ## Developer documentation
 - [Install/Run/Test application](doc/howToRun.md)
-- [How-To module tutorial](doc/howToModuleGuide.md) - a startup guide. It will go through a module, using simple example and explain how it works.
+- [How-To module tutorial](doc/howToModuleGuide.md) - a startup guide. It will go through a module, using a simple example and explain how it works.
 - [How to create your own module](doc/howToCreate.md) - in case you've already read the [How-To module tutorial](doc/howToModuleGuide.md) and you just want to create your own module.
 - [Module documentation](doc/module.md) - Detailed module documentation.
 - [redux-observable examples](doc/reduxObservableExamples.md) - It contains a list of most common use cases of epics. It should help you create your epics when you are developing your app.
@@ -16,12 +16,12 @@
     - because it will compare references instead of doing deep equals on structures
 
 ### Independence
-It's **robust againts accidental owerwrites** and unexpected name collisions
-  - All **actions are name-spaced**. This will avoid collision when someone accidentally names action in the same way.
-    - Reducers example: When two people in different modules name their action "LOAD_LIST", your reducers will ignore actions from other module (unless you specificaly import them from action file of that module)
+It's **robust against accidental overwrites** and unexpected name collisions
+  - All **actions are name-spaced**. This will avoid a collision when someone accidentally names action in the same way.
+    - Reducers example: When two people in different modules name their action "LOAD_LIST", your reducers will ignore actions from another module (unless you specifically import them from action file of that module)
     - Epics have the same principal as reducers - you will listen only to imported actions.
-  - Every reducer has it's own part of the application state (nobody will rewrite your part of state unless they do so from your module).
-  - State structure is strictly defined in the file `moduleState.js` in every module. In case anybody want's to add some other property, it needs to be defined in there.
+  - Every reducer has its own part of the application state (nobody will rewrite your part of state unless they do so from your module).
+  - State structure is strictly defined in the file `moduleState.js` in every module. In case anybody wants to add some other property, it needs to be defined in there.
   - Every module has it's own namespaced styles (no collisions). 
 
 ### Other
