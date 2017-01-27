@@ -203,7 +203,7 @@ Epics could be used for handling asynchronous code like API calls or action chai
     .map(response => Actions.displayItems(response.data));
   ```
   This code will listen for Action `Actions.LOAD_ITEMS`, then it will load items with `fetchItems()` and then trigger action `Actions.displayItems` with loaded data as a payload.
-  - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check [module's documentation](module.md#utils-directory) to learn more on what's useful to put into the `utils` folder, it will help you keep your code clean.)
+  - You can check a function `fetchItems` in the `utils/apiCalls.js` file. (also check [utils section](module.md#utils-directory) in the module documentation to learn more on what's useful to put into the `utils` folder, it will help you keep your code clean.)
 
 Perfect! Now when we click our button, it will trigger an api call to load more data (you can verify this by looking into netwok part of console in browser). You can't see data in view yet, because we haven't save them anywhere. Let's do it in the last step of this tutorial. 
 
