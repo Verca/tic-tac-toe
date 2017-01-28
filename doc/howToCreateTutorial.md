@@ -7,7 +7,7 @@ A module is an independent unit. You can perceive it as an independent tab in th
         cp -R doc/tutorialModule src/modules/tutorialModule
     ```
     
-4. Now let's register our module in the application! 
+2. Now let's register our module in the application! 
     1. Open file `src/modulesRegister.js`. We will register our reducers, epics and module state. 
         
         First import our new module in the beginning of this file:
@@ -43,7 +43,7 @@ A module is an independent unit. You can perceive it as an independent tab in th
           }],
         };
         ```
-5. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add a `tutorial-module` link:
+3. Let's add our new module to the menu now. In the file `src/modules/application/components/Menu.jsx` add a `tutorial-module` link:
     
     ```
         <ul className={styles.menu}>
