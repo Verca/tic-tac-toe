@@ -30,6 +30,10 @@ module.exports = {
     new ExtractTextPlugin('app.bundle.global.css')
   ],
   resolve: {
+    root: [
+      path.resolve(__dirname, 'src'),
+      path.resolve(__dirname, 'node_modules')
+      ],
     extensions: ['', '.jsx', '.js'],
   },
   devtool: 'source-map',

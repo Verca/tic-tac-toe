@@ -1,5 +1,5 @@
+import transform from 'applicationSettings/buildActions';
 import moduleName from '../moduleName';
-import transform from '../../../applicationSettings/buildActions';
 
 const actions = {
   LOAD_ITEMS: 'loadItems',
