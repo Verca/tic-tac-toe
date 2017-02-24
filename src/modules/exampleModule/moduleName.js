@@ -1,4 +1,4 @@
 // define name of your module
-const moduleName = 'exampleComponent';
+const moduleName = 'exampleModule';
 
 export default moduleName;

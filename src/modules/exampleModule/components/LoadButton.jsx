@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import moduleName from '../moduleName';
 
-import Actions from '../actions/actions';
+import Actions from '../actions/basicActions';
 import styles from '../styles/listView.less';
 
 class LoadButton extends React.Component {

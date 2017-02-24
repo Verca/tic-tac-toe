@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import Actions from '../actions/actions';
+import Actions from '../actions/basicActions';
 import { fetchItems } from '../utils/apiCalls';
 
 // This epic handles LOAD_ITEMS action: calls

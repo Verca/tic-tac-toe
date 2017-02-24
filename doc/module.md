@@ -29,7 +29,7 @@ First let's explain config files located in the root directory of the module.
 In the `moduleName.js` you specify the name of your module. This name has to be unique in the project. Just set the `moduleName` variable.
 
 ```javascript
-const moduleName = 'exampleComponent';
+const moduleName = 'exampleModule';
 ```
 
 ### moduleRegister.js

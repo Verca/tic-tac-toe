@@ -24,7 +24,7 @@ export default {
   component: IndexComponent,
   onEnter: () => {
     store.dispatch(dummyExtended()).then(() => {
-      // console.info('resolved', store.getState().exampleComponent.get('test'));
+      // console.info('resolved', store.getState().exampleModule.get('test'));
     });
   },
 };

@@ -1,5 +1,5 @@
 import * as listReducer from './listReducer';
-import Actions from '../actions/actions';
+import Actions from '../actions/basicActions';
 
 const reducerMapping = {
   [Actions.LOAD_ITEMS]: listReducer.loadItems,

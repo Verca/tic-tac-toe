@@ -19,7 +19,7 @@ class Menu extends React.Component {
       <div>
         <ul className={styles.menu}>
           <li><IndexLink to="/" className={styles.menuLink} activeClassName={styles.active}>Home</IndexLink></li>
-          <li><Link to="/example" className={styles.menuLink} activeClassName={styles.active}>ExampleComponent</Link></li>
+          <li><Link to="/example" className={styles.menuLink} activeClassName={styles.active}>exampleModule</Link></li>
         </ul>
       </div>);
   }
