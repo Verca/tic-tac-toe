@@ -13,3 +13,7 @@ export function displayItems(state, action) {
     mutableState.set('items', extendedItems);
   });
 }
+
+export const addSomething = (state, action) => {
+  return state.set('test', 1);
+};

@@ -1,5 +1,8 @@
+import store from 'applicationSettings/store';
+
 import IndexComponent from '../../common/indexComponent/IndexComponent';
 import ListView from './components/ListView';
+import { dummyExtended } from './actions/extendedActions';
 
 /**
  * path - defines url route for this module
@@ -19,4 +22,9 @@ export default {
   },
   childRoutes: [],
   component: IndexComponent,
+  onEnter: () => {
+    store.dispatch(dummyExtended()).then(() => {
+      // console.info('resolved', store.getState().exampleComponent.get('test'));
+    });
+  },
 };

@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import thunk from 'redux-thunk';
 import _ from 'lodash';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
@@ -20,6 +21,6 @@ const composeEnhancers = composeWithDevTools({
  // Specify here name, actionsBlacklist, actionsCreators and other options
 });
 const store = createStore(reducers, initialState,
-  composeEnhancers(applyMiddleware(routeMiddleware, epicMiddleware)));
+  composeEnhancers(applyMiddleware(thunk, routeMiddleware, epicMiddleware)));
 
 export default store;
